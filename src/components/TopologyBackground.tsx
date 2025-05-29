@@ -17,30 +17,54 @@ export const TopologyBackground: React.FC = () => {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    containerRef.current.appendChild(renderer.domElement);    // Create geometry
-    const geometry = new THREE.BufferGeometry();
-    const vertices = [];
-    const size = 30; // Increased size
-    const density = 1; // Decreased step size for more points
+    containerRef.current.appendChild(renderer.domElement);
 
-    for (let x = -size; x <= size; x += density) {
-      for (let y = -size; y <= size; y += density) {
-        vertices.push(x, y, Math.sin((x + y) * 0.2) * 2);
-      }
-    }
-
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));    // Create material
-    const material = new THREE.PointsMaterial({
-      size: 0.05, // Reduced point size to accommodate more points
-      color: theme === 'dark' ? 0x6C63FF : 0x2EC4B6,
+    // Create star particles
+    const starGeometry = new THREE.BufferGeometry();
+    const starMaterial = new THREE.PointsMaterial({
+      size: 0.02,
+      color: theme === 'dark' ? 0xffffff : 0x000000,
       transparent: true,
       opacity: 0.8,
       sizeAttenuation: true,
     });
 
-    // Create points
-    const points = new THREE.Points(geometry, material);
-    scene.add(points);
+    // Generate random star positions
+    const starVertices = [];
+    for (let i = 0; i < 15000; i++) {
+      const x = (Math.random() - 0.5) * 100;
+      const y = (Math.random() - 0.5) * 100;
+      const z = (Math.random() - 0.5) * 100;
+      starVertices.push(x, y, z);
+    }
+
+    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+    const starField = new THREE.Points(starGeometry, starMaterial);
+    scene.add(starField);
+
+    // Create nebula effect
+    const nebulaGeometry = new THREE.BufferGeometry();
+    const nebulaMaterial = new THREE.PointsMaterial({
+      size: 0.05,
+      color: theme === 'dark' ? 0x6C63FF : 0x2EC4B6,
+      transparent: true,
+      opacity: 0.4,
+      sizeAttenuation: true,
+    });
+
+    const nebulaVertices = [];
+    for (let i = 0; i < 1000; i++) {
+      const theta = Math.random() * Math.PI * 2;
+      const radius = 5 + Math.random() * 20;
+      const x = Math.cos(theta) * radius;
+      const y = (Math.random() - 0.5) * 10;
+      const z = Math.sin(theta) * radius;
+      nebulaVertices.push(x, y, z);
+    }
+
+    nebulaGeometry.setAttribute('position', new THREE.Float32BufferAttribute(nebulaVertices, 3));
+    const nebula = new THREE.Points(nebulaGeometry, nebulaMaterial);
+    scene.add(nebula);
 
     // Position camera
     camera.position.z = 30;
@@ -50,17 +74,24 @@ export const TopologyBackground: React.FC = () => {
     const animate = () => {
       frame = requestAnimationFrame(animate);
 
-      points.rotation.x += 0.001;
-      points.rotation.y += 0.002;
+      // Rotate star field slowly
+      starField.rotation.y += 0.0002;
+      starField.rotation.x += 0.0001;
 
-      const positions = points.geometry.attributes.position.array;
-      const time = Date.now() * 0.0002;
-
+      // Rotate nebula
+      nebula.rotation.y += 0.0005;
+      
+      // Create pulsing effect for nebula
+      const time = Date.now() * 0.001;
+      nebulaMaterial.opacity = 0.4 + Math.sin(time) * 0.2;
+      
+      // Make some stars twinkle
+      const positions = starField.geometry.attributes.position.array;
       for (let i = 0; i < positions.length; i += 3) {
-        positions[i + 2] = Math.sin((positions[i] + positions[i + 1] + time) * 0.2) * 2;
+        const offset = Math.sin(time + i) * 0.1;
+        positions[i + 2] += offset;
       }
-
-      points.geometry.attributes.position.needsUpdate = true;
+      starField.geometry.attributes.position.needsUpdate = true;
 
       renderer.render(scene, camera);
     };
@@ -80,9 +111,12 @@ export const TopologyBackground: React.FC = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(frame);
-      scene.remove(points);
-      geometry.dispose();
-      material.dispose();
+      scene.remove(starField);
+      scene.remove(nebula);
+      starGeometry.dispose();
+      nebulaGeometry.dispose();
+      starMaterial.dispose();
+      nebulaMaterial.dispose();
       renderer.dispose();
       if (containerRef.current?.contains(renderer.domElement)) {
         containerRef.current.removeChild(renderer.domElement);
