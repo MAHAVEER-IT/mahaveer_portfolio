@@ -10,8 +10,10 @@ export const TopologyBackground: React.FC = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Scene setup
+    // Scene setup with fog for depth
     const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(theme === 'dark' ? 0x0f172a : 0xf8fafc, 0.002);
+    
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
@@ -19,158 +21,218 @@ export const TopologyBackground: React.FC = () => {
     renderer.setPixelRatio(window.devicePixelRatio);
     containerRef.current.appendChild(renderer.domElement);
 
-    // Create floating shapes
-    const shapes: THREE.Mesh[] = [];
-    const shapesCount = 15;
-    const geometries = [
-      new THREE.IcosahedronGeometry(1, 0),
-      new THREE.OctahedronGeometry(1, 0),
-      new THREE.TetrahedronGeometry(1, 0)
-    ];
+    // Create star field
+    const starGeometry = new THREE.BufferGeometry();
+    const starCount = 5000;
+    const starPositions = new Float32Array(starCount * 3);
+    const starSizes = new Float32Array(starCount);
 
-    for (let i = 0; i < shapesCount; i++) {
-      const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-      const material = new THREE.MeshPhongMaterial({
-        color: theme === 'dark' ? 0x6C63FF : 0x2EC4B6,
+    for (let i = 0; i < starCount * 3; i += 3) {
+      const radius = Math.random() * 100 + 50;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.random() * Math.PI * 2;
+
+      starPositions[i] = radius * Math.sin(theta) * Math.cos(phi);
+      starPositions[i + 1] = radius * Math.sin(theta) * Math.sin(phi);
+      starPositions[i + 2] = radius * Math.cos(theta);
+      
+      starSizes[i / 3] = Math.random() * 2 + 0.5;
+    }
+
+    starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+    starGeometry.setAttribute('size', new THREE.BufferAttribute(starSizes, 1));
+
+    const starMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 },
+        color: { value: new THREE.Color(theme === 'dark' ? 0xffffff : 0x000000) }
+      },
+      vertexShader: `
+        attribute float size;
+        uniform float time;
+        varying float vSize;
+        
+        void main() {
+          vSize = size;
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = size * (300.0 / -mvPosition.z);
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 color;
+        varying float vSize;
+        
+        void main() {
+          vec2 center = gl_PointCoord - vec2(0.5);
+          float dist = length(center);
+          float alpha = 1.0 - smoothstep(0.45, 0.5, dist);
+          gl_FragColor = vec4(color, alpha * (vSize * 0.5));
+        }
+      `,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+
+    const stars = new THREE.Points(starGeometry, starMaterial);
+    scene.add(stars);
+
+    // Create nebula clouds
+    const nebulaCount = 8;
+    const nebulae: THREE.Mesh[] = [];
+
+    for (let i = 0; i < nebulaCount; i++) {
+      const nebulaGeometry = new THREE.IcosahedronGeometry(Math.random() * 20 + 10, 2);
+      const nebulaMaterial = new THREE.MeshPhongMaterial({
+        color: new THREE.Color(theme === 'dark' ? 0x6C63FF : 0x2EC4B6),
         transparent: true,
-        opacity: 0.6,
+        opacity: 0.15,
         wireframe: true
       });
 
-      const shape = new THREE.Mesh(geometry, material);
-      shape.position.set(
-        (Math.random() - 0.5) * 30,
-        (Math.random() - 0.5) * 30,
-        (Math.random() - 0.5) * 30
+      const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
+      nebula.position.set(
+        (Math.random() - 0.5) * 100,
+        (Math.random() - 0.5) * 100,
+        (Math.random() - 0.5) * 100
       );
-      shape.rotation.set(
+      nebula.rotation.set(
         Math.random() * Math.PI,
         Math.random() * Math.PI,
         Math.random() * Math.PI
       );
-      shape.scale.setScalar(Math.random() * 2 + 1);
-      shapes.push(shape);
-      scene.add(shape);
+      nebulae.push(nebula);
+      scene.add(nebula);
     }
 
-    // Create particle system
-    const particlesCount = 2000;
+    // Create energy particles
+    const particlesCount = 1000;
     const particlesGeometry = new THREE.BufferGeometry();
     const particlePositions = new Float32Array(particlesCount * 3);
+    const particleVelocities = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i += 3) {
-      particlePositions[i] = (Math.random() - 0.5) * 50;
-      particlePositions[i + 1] = (Math.random() - 0.5) * 50;
-      particlePositions[i + 2] = (Math.random() - 0.5) * 50;
+      const radius = Math.random() * 50 + 20;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.random() * Math.PI * 2;
+
+      particlePositions[i] = radius * Math.sin(theta) * Math.cos(phi);
+      particlePositions[i + 1] = radius * Math.sin(theta) * Math.sin(phi);
+      particlePositions[i + 2] = radius * Math.cos(theta);
+
+      particleVelocities[i] = (Math.random() - 0.5) * 0.05;
+      particleVelocities[i + 1] = (Math.random() - 0.5) * 0.05;
+      particleVelocities[i + 2] = (Math.random() - 0.5) * 0.05;
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
     
     const particlesMaterial = new THREE.PointsMaterial({
-      color: theme === 'dark' ? 0xFFFFFF : 0x000000,
-      size: 0.05,
+      color: theme === 'dark' ? 0x6C63FF : 0x2EC4B6,
+      size: 0.2,
       transparent: true,
       opacity: 0.6,
-      sizeAttenuation: true
+      sizeAttenuation: true,
+      blending: THREE.AdditiveBlending
     });
 
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particles);
 
-    // Add ambient light
-    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.2);
     scene.add(ambientLight);
 
-    // Add directional light
-    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
+    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.8);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
     // Position camera
-    camera.position.z = 30;
+    camera.position.z = 100;
 
     // Animation
     let frame: number;
+    let mouseX = 0;
+    let mouseY = 0;
+    const windowHalfX = window.innerWidth / 2;
+    const windowHalfY = window.innerHeight / 2;
+
     const animate = () => {
       frame = requestAnimationFrame(animate);
 
-      // Rotate shapes
-      shapes.forEach((shape, index) => {
-        const speed = 0.001 + (index * 0.0002);
-        shape.rotation.x += speed;
-        shape.rotation.y += speed * 1.5;
-        
-        // Add floating motion
-        const time = Date.now() * 0.001;
-        const offset = Math.sin(time + index) * 0.1;
-        shape.position.y += offset * 0.01;
+      // Update star shader time
+      starMaterial.uniforms.time.value += 0.005;
+
+      // Rotate nebulae
+      nebulae.forEach((nebula, index) => {
+        nebula.rotation.x += 0.001 * (index + 1);
+        nebula.rotation.y += 0.002 * (index + 1);
       });
 
-      // Rotate particles
-      particles.rotation.y += 0.0002;
-      
-      // Add wave effect to particles
-      const positions = particles.geometry.attributes.position.array;
-      const time = Date.now() * 0.001;
-      
+      // Update particles
+      const positions = particles.geometry.attributes.position.array as Float32Array;
       for (let i = 0; i < positions.length; i += 3) {
-        const x = positions[i];
-        const z = positions[i + 2];
-        const distance = Math.sqrt(x * x + z * z);
-        positions[i + 1] += Math.sin(distance + time) * 0.01;
+        positions[i] += particleVelocities[i];
+        positions[i + 1] += particleVelocities[i + 1];
+        positions[i + 2] += particleVelocities[i + 2];
+
+        // Boundary check and reset
+        if (Math.abs(positions[i]) > 50) particleVelocities[i] *= -1;
+        if (Math.abs(positions[i + 1]) > 50) particleVelocities[i + 1] *= -1;
+        if (Math.abs(positions[i + 2]) > 50) particleVelocities[i + 2] *= -1;
       }
-      
       particles.geometry.attributes.position.needsUpdate = true;
+
+      // Camera movement based on mouse position
+      camera.position.x += (mouseX * 0.05 - camera.position.x) * 0.02;
+      camera.position.y += (-mouseY * 0.05 - camera.position.y) * 0.02;
+      camera.lookAt(scene.position);
 
       renderer.render(scene, camera);
     };
 
-    // Handle resize
+    // Handle window resize
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
 
-    window.addEventListener('resize', handleResize);
-    animate();
-    setIsLoading(false);
-
-    // Mouse movement effect
+    // Handle mouse movement
     const handleMouseMove = (event: MouseEvent) => {
-      const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-
-      shapes.forEach((shape) => {
-        shape.rotation.x += mouseY * 0.001;
-        shape.rotation.y += mouseX * 0.001;
-      });
-
-      particles.rotation.x += mouseY * 0.0002;
-      particles.rotation.y += mouseX * 0.0002;
+      mouseX = (event.clientX - windowHalfX) * 2;
+      mouseY = (event.clientY - windowHalfY) * 2;
     };
 
+    window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
+    animate();
+    setIsLoading(false);
 
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(frame);
-      
-      shapes.forEach(shape => {
-        scene.remove(shape);
-        shape.geometry.dispose();
-        shape.material.dispose();
+
+      nebulae.forEach(nebula => {
+        scene.remove(nebula);
+        nebula.geometry.dispose();
+        (nebula.material as THREE.Material).dispose();
       });
-      
+
+      scene.remove(stars);
+      starGeometry.dispose();
+      starMaterial.dispose();
+
       scene.remove(particles);
       particlesGeometry.dispose();
       particlesMaterial.dispose();
-      
+
       scene.remove(ambientLight);
       scene.remove(directionalLight);
-      
+
       renderer.dispose();
       if (containerRef.current?.contains(renderer.domElement)) {
         containerRef.current.removeChild(renderer.domElement);
