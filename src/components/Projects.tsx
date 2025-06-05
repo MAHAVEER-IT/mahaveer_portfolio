@@ -1,24 +1,43 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ExternalLink, Github, Layers, Code, PanelRight } from 'lucide-react';
-import { code } from 'three/tsl';
+import { ExternalLink, Github, Layers, Code, PanelRight, X } from 'lucide-react';
 
 export const Projects: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const projects = [
     {
       title: 'Bank Insight',
       description: 'An all-in-one banking app that offers features such as balance check, mini statements, ATM blocking, customer support, loan calculators, nearby ATM/bank locator, currency converter, and expense tracker.',
+      longDescription: `Bank Insight is a comprehensive banking application designed to provide users with a seamless banking experience. Key features include:
+
+• Real-time balance checking and mini statement generation
+• Secure ATM card management with instant blocking capability
+• Interactive loan calculators for various types of loans
+• Integrated ATM and bank branch locator with maps
+• Live currency converter with support for multiple currencies
+• Detailed expense tracking and categorization
+• 24/7 customer support with chat functionality
+• Secure authentication and transaction processing`,
       liveLink: 'https://drive.google.com/drive/folders/13j3pnF7rVRWrvD1OvyUghWhdSVP8HYQR?usp=drive_link',
       codeLink: 'https://github.com/MAHAVEER-IT/bank_inish.git',
       image: 'https://images.pexels.com/photos/7821487/pexels-photo-7821487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      
-      technologies: ['Flutter', 'Firebase', 'currency converter API',]
+      technologies: ['Flutter', 'Firebase', 'currency converter API']
     },
     {
       title: 'Sow&Grow',
-      description: 'Developed Sow&Grow, an innovative agriculture application designed to help rural farmers monitor diseases, communicate with veterinarians, and receive vaccination alerts. Oversaw the development process utilizing Flutter, incorporating features such as voice assistance, AI-driven image recognition, and real-time mapping with support for local languages.',
+      description: 'Developed Sow&Grow, an innovative agriculture application designed to help rural farmers monitor diseases, communicate with veterinarians, and receive vaccination alerts.',
+      longDescription: `Sow&Grow is a comprehensive agriculture management application that bridges the gap between farmers and modern agricultural practices. The application features:
+
+• AI-powered disease detection for crops and livestock
+• Real-time communication with veterinarians and experts
+• Automated vaccination scheduling and reminders
+• Voice assistance in multiple local languages
+• Weather forecasting and crop planning tools
+• Community forum for knowledge sharing
+• Offline functionality for rural areas
+• GPS-based field mapping and monitoring`,
       liveLink: 'https://drive.google.com/drive/folders/1Wtnws7KfFGfdtW0MnelPB_bsFw71JwVl?usp=drive_link',
       codeLink: 'https://github.com/MAHAVEER-IT/Farmcare_Flutter.git',
       image: 'https://images.pexels.com/photos/2886937/pexels-photo-2886937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
@@ -26,7 +45,19 @@ export const Projects: React.FC = () => {
     },
     {
       title: 'AI-NoteMate',
-      description: 'NoteMate is a MERN stack web app designed for productivity, featuring intelligent note-taking, movable sticky notes, and an AI-driven daily planner with speech-to-text capabilities. It provides organized notes, a visual sticky note board, AI-generated schedules, and personalized reminders, while supporting theme and language preferences for efficient task management.',
+      description: 'NoteMate is a MERN stack web app designed for productivity, featuring intelligent note-taking, movable sticky notes, and an AI-driven daily planner with speech-to-text capabilities.',
+      longDescription: `AI-NoteMate revolutionizes note-taking and task management with advanced AI integration. Key features include:
+
+• AI-powered note organization and categorization
+• Interactive drag-and-drop sticky note board
+• Smart daily planner with AI scheduling suggestions
+• Voice-to-text note creation
+• Real-time collaboration capabilities
+• Custom themes and layout options
+• Advanced search and filtering
+• Automated backup and synchronization
+• Integration with calendar applications
+• Mobile-responsive design for on-the-go access`,
       liveLink: 'https://note-mate-sage.vercel.app/',
       codeLink: 'https://github.com/MAHAVEER-IT/Note-Mate.git',
       image: 'https://images.pexels.com/photos/5717479/pexels-photo-5717479.jpeg',
@@ -153,6 +184,7 @@ export const Projects: React.FC = () => {
                       <span>Live Demo</span>
                     </a>
                     <button
+                      onClick={() => setSelectedProject(index)}
                       className="flex items-center text-sm font-medium text-[#6C63FF] hover:underline"
                       aria-label={`View ${project.title} details`}
                     >
@@ -166,6 +198,79 @@ export const Projects: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* Project Details Dialog */}
+      {selectedProject !== null && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
+          <div className="relative w-full max-w-2xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl transform transition-all">
+            <div className="absolute top-4 right-4">
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Close dialog"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            
+            <div className="p-6">
+              <div className="relative h-48 -mt-6 -mx-6 mb-6 rounded-t-xl overflow-hidden">
+                <img
+                  src={projects[selectedProject].image}
+                  alt={projects[selectedProject].title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <h3 className="absolute bottom-4 left-6 text-2xl font-bold text-white">
+                  {projects[selectedProject].title}
+                </h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {projects[selectedProject].technologies.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                
+                <div className="prose dark:prose-invert max-w-none">
+                  {projects[selectedProject].longDescription.split('\n').map((paragraph, index) => (
+                    <p key={index} className="mb-4 text-gray-600 dark:text-gray-300">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+                
+                <div className="flex gap-4 mt-6">
+                  <a
+                    href={projects[selectedProject].codeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-[#6C63FF] text-white rounded-lg hover:bg-[#5A52D5] transition-colors"
+                  >
+                    <Github className="w-5 h-5" />
+                    View Code
+                  </a>
+                  <a
+                    href={projects[selectedProject].liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-[#2EC4B6] text-white rounded-lg hover:bg-[#25A093] transition-colors"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
