@@ -25,13 +25,13 @@ export const Projects: React.FC = () => {
       technologies: ['Flutter', 'Dart', 'Firebase', 'Maps API']
     },
     {
-      title: 'Note Mate',
+      title: 'AI-NoteMate',
       description: 'NoteMate is a MERN stack web app designed for productivity, featuring intelligent note-taking, movable sticky notes, and an AI-driven daily planner with speech-to-text capabilities. It provides organized notes, a visual sticky note board, AI-generated schedules, and personalized reminders, while supporting theme and language preferences for efficient task management.',
       liveLink: 'https://note-mate-sage.vercel.app/',
       codeLink: 'https://github.com/MAHAVEER-IT/Note-Mate.git',
-      image: 'https://images.pexels.com/photos/6804605/pexels-photo-6804605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      image: 'https://images.pexels.com/photos/5717479/pexels-photo-5717479.jpeg',
       technologies: ['React', 'Express', 'Node.js', 'MongoDB', 'OpenAI']
-    }
+    },
   ];
 
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
