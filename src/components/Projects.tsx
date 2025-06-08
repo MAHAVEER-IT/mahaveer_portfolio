@@ -95,12 +95,46 @@ export const Projects: React.FC = () => {
     };
   }, []);
 
+  // Close dialog when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (selectedProject !== null && target.closest('.dialog-content') === null) {
+        setSelectedProject(null);
+      }
+    };
+
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && selectedProject !== null) {
+        setSelectedProject(null);
+      }
+    };
+
+    if (selectedProject !== null) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscapeKey);
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedProject]);
+
   const handleMouseEnter = (index: number) => {
     setActiveProject(index);
   };
 
   const handleMouseLeave = () => {
     setActiveProject(null);
+  };
+
+  const closeDialog = () => {
+    setSelectedProject(null);
   };
 
   return (
@@ -201,12 +235,18 @@ export const Projects: React.FC = () => {
 
       {/* Project Details Dialog */}
       {selectedProject !== null && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
-          <div className="relative w-full max-w-2xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl transform transition-all">
-            <div className="absolute top-4 right-4">
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm"
+          onClick={closeDialog}
+        >
+          <div 
+            className="dialog-content relative w-full max-w-2xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl transform transition-all max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 bg-white dark:bg-gray-800 p-4 border-b border-gray-200 dark:border-gray-700 rounded-t-xl">
               <button
-                onClick={() => setSelectedProject(null)}
-                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                onClick={closeDialog}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors z-10"
                 aria-label="Close dialog"
               >
                 <X className="w-6 h-6" />
