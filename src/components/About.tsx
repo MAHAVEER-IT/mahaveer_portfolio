@@ -5,6 +5,7 @@ export const About: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const bioRef = useRef<HTMLDivElement>(null);
   const educationRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,11 +23,13 @@ export const About: React.FC = () => {
     if (sectionRef.current) observer.observe(sectionRef.current);
     if (bioRef.current) observer.observe(bioRef.current);
     if (educationRef.current) observer.observe(educationRef.current);
+    if (imageRef.current) observer.observe(imageRef.current);
 
     return () => {
       if (sectionRef.current) observer.unobserve(sectionRef.current);
       if (bioRef.current) observer.unobserve(bioRef.current);
       if (educationRef.current) observer.unobserve(educationRef.current);
+      if (imageRef.current) observer.unobserve(imageRef.current);
     };
   }, []);
 
@@ -64,11 +67,39 @@ export const About: React.FC = () => {
           </span>
         </h2>
 
+        {/* Profile Image Section */}
+        <div 
+          ref={imageRef}
+          className="flex justify-center mb-16 opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+        >
+          <div className="relative">
+            {/* Animated rings around the image */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] animate-spin" style={{ animationDuration: '8s' }}></div>
+            <div className="absolute inset-2 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FF6B6B] animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }}></div>
+            
+            {/* Profile image container */}
+            <div className="relative w-48 h-48 md:w-56 md:h-56 m-4">
+              <div className="w-full h-full rounded-full overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500 ease-out">
+                <img
+                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Mahaveer K"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              {/* Floating decorative elements */}
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#6C63FF] rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+              <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-[#2EC4B6] rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute top-1/2 -right-4 w-4 h-4 bg-[#FFD700] rounded-full animate-bounce" style={{ animationDelay: '2s' }}></div>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Bio */}
           <div 
             ref={bioRef}
-            className="opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+            className="opacity-0 translate-y-10 transition-all duration-1000 delay-300 ease-out"
           >
             <div className="perspective-container card-hover p-6 rounded-xl shadow-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
               <h3 className="text-2xl font-semibold mb-6 flex items-center">
@@ -104,7 +135,7 @@ export const About: React.FC = () => {
           {/* Education */}
           <div 
             ref={educationRef}
-            className="opacity-0 translate-y-10 transition-all duration-1000 delay-300 ease-out"
+            className="opacity-0 translate-y-10 transition-all duration-1000 delay-600 ease-out"
           >
             <div className="perspective-container card-hover p-6 rounded-xl shadow-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
               <h3 className="text-2xl font-semibold mb-6 flex items-center">
