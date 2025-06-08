@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import MyImage from '../../public/me.png'
 import { GraduationCap, User, Phone, Mail } from 'lucide-react';
 
 export const About: React.FC = () => {
@@ -81,7 +82,7 @@ export const About: React.FC = () => {
             <div className="relative w-48 h-48 md:w-56 md:h-56 m-4">
               <div className="w-full h-full rounded-full overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500 ease-out">
                 <img
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  src={MyImage}
                   alt="Mahaveer K"
                   className="w-full h-full object-cover"
                 />
