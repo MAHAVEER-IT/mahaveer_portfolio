@@ -17,9 +17,7 @@ export const Projects: React.FC = () => {
 • Interactive loan calculators for various types of loans
 • Integrated ATM and bank branch locator with maps
 • Live currency converter with support for multiple currencies
-• Detailed expense tracking and categorization
-• 24/7 customer support with chat functionality
-• Secure authentication and transaction processing`,
+• Detailed expense tracking and categorization`,
       liveLink: 'https://drive.google.com/drive/folders/13j3pnF7rVRWrvD1OvyUghWhdSVP8HYQR?usp=drive_link',
       codeLink: 'https://github.com/MAHAVEER-IT/bank_inish.git',
       image: 'https://images.pexels.com/photos/7821487/pexels-photo-7821487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
