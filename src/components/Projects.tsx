@@ -38,8 +38,8 @@ export const Projects: React.FC = () => {
 • Community forum for knowledge sharing
 • Offline functionality for rural areas
 • GPS-based field mapping and monitoring`,
-      liveLink: 'https://drive.google.com/drive/folders/1Wtnws7KfFGfdtW0MnelPB_bsFw71JwVl?usp=drive_link',
-      codeLink: 'https://github.com/MAHAVEER-IT/Farmcare_Flutter.git',
+      liveLink: 'https://www.canva.com/design/DAGrAd4CWMI/JwQ19kPFiNsjxFi0YFJ9_A/watch?utm_content=DAGrAd4CWMI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h0409f5f144',
+      codeLink: 'https://github.com/MAHAVEER-IT/Sow-Grow.git',
       image: 'https://images.pexels.com/photos/2886937/pexels-photo-2886937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['Flutter', 'Dart', 'Firebase', 'Maps API']
     },
