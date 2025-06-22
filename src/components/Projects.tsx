@@ -93,11 +93,11 @@ export const Projects: React.FC = () => {
     };
   }, []);
 
-  // Close dialog when clicking outside
+  // Close dialog when clicking outside or pressing escape
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       const target = event.target as HTMLElement;
-      if (selectedProject !== null && target.closest('.dialog-content') === null) {
+      if (selectedProject !== null && !target.closest('.dialog-content')) {
         setSelectedProject(null);
       }
     };
@@ -110,6 +110,7 @@ export const Projects: React.FC = () => {
 
     if (selectedProject !== null) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
       document.addEventListener('keydown', handleEscapeKey);
       document.body.style.overflow = 'hidden'; // Prevent background scrolling
     } else {
@@ -118,6 +119,7 @@ export const Projects: React.FC = () => {
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
       document.removeEventListener('keydown', handleEscapeKey);
       document.body.style.overflow = 'unset';
     };
@@ -133,6 +135,10 @@ export const Projects: React.FC = () => {
 
   const closeDialog = () => {
     setSelectedProject(null);
+  };
+
+  const openDialog = (index: number) => {
+    setSelectedProject(index);
   };
 
   return (
@@ -194,7 +200,7 @@ export const Projects: React.FC = () => {
                   </div>
                   
                   {/* Project Links */}
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-center">
                     <a
                       href={project.codeLink}
                       className="flex items-center text-sm font-medium text-[#6C63FF] hover:underline"
@@ -216,8 +222,8 @@ export const Projects: React.FC = () => {
                       <span>Live Demo</span>
                     </a>
                     <button
-                      onClick={() => setSelectedProject(index)}
-                      className="flex items-center text-sm font-medium text-[#6C63FF] hover:underline"
+                      onClick={() => openDialog(index)}
+                      className="flex items-center text-sm font-medium text-[#6C63FF] hover:underline focus:outline-none focus:ring-2 focus:ring-[#6C63FF] focus:ring-opacity-50 rounded px-1 py-1"
                       aria-label={`View ${project.title} details`}
                     >
                       <PanelRight className="w-4 h-4 mr-1" />
@@ -231,41 +237,50 @@ export const Projects: React.FC = () => {
         </div>
       </div>
 
-      {/* Project Details Dialog */}
+      {/* Project Details Dialog - Mobile Optimized */}
       {selectedProject !== null && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm"
-          onClick={closeDialog}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+          style={{ padding: '1rem' }}
         >
           <div 
-            className="dialog-content relative w-full max-w-2xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl transform transition-all max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
+            className="dialog-content relative w-full max-w-4xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl transform transition-all duration-300 ease-out"
+            style={{
+              maxHeight: 'calc(100vh - 2rem)',
+              maxWidth: 'calc(100vw - 2rem)',
+              minHeight: '300px'
+            }}
           >
-            <div className="sticky top-0 bg-white dark:bg-gray-800 p-4 border-b border-gray-200 dark:border-gray-700 rounded-t-xl">
+            {/* Header with close button */}
+            <div className="sticky top-0 bg-white dark:bg-gray-800 p-4 border-b border-gray-200 dark:border-gray-700 rounded-t-xl flex justify-between items-center z-10">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white truncate pr-4">
+                {projects[selectedProject].title}
+              </h3>
               <button
                 onClick={closeDialog}
-                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors z-10"
+                className="flex-shrink-0 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-[#6C63FF] focus:ring-opacity-50"
                 aria-label="Close dialog"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
             
-            <div className="p-6">
-              <div className="relative h-48 -mt-6 -mx-6 mb-6 rounded-t-xl overflow-hidden">
+            {/* Scrollable content */}
+            <div className="overflow-y-auto" style={{ maxHeight: 'calc(100vh - 8rem)' }}>
+              {/* Project Image */}
+              <div className="relative h-48 sm:h-64 overflow-hidden">
                 <img
                   src={projects[selectedProject].image}
                   alt={projects[selectedProject].title}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                <h3 className="absolute bottom-4 left-6 text-2xl font-bold text-white">
-                  {projects[selectedProject].title}
-                </h3>
               </div>
               
-              <div className="space-y-4">
-                <div className="flex flex-wrap gap-2 mb-4">
+              {/* Content */}
+              <div className="p-4 sm:p-6">
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-6">
                   {projects[selectedProject].technologies.map((tech, index) => (
                     <span
                       key={index}
@@ -276,20 +291,22 @@ export const Projects: React.FC = () => {
                   ))}
                 </div>
                 
-                <div className="prose dark:prose-invert max-w-none">
+                {/* Description */}
+                <div className="prose dark:prose-invert max-w-none mb-6">
                   {projects[selectedProject].longDescription.split('\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4 text-gray-600 dark:text-gray-300">
+                    <p key={index} className="mb-4 text-gray-600 dark:text-gray-300 leading-relaxed">
                       {paragraph}
                     </p>
                   ))}
                 </div>
                 
-                <div className="flex gap-4 mt-6">
+                {/* Action buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <a
                     href={projects[selectedProject].codeLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 px-4 py-2 bg-[#6C63FF] text-white rounded-lg hover:bg-[#5A52D5] transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-3 bg-[#6C63FF] text-white rounded-lg hover:bg-[#5A52D5] transition-colors focus:outline-none focus:ring-2 focus:ring-[#6C63FF] focus:ring-opacity-50"
                   >
                     <Github className="w-5 h-5" />
                     View Code
@@ -298,7 +315,7 @@ export const Projects: React.FC = () => {
                     href={projects[selectedProject].liveLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 px-4 py-2 bg-[#2EC4B6] text-white rounded-lg hover:bg-[#25A093] transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-3 bg-[#2EC4B6] text-white rounded-lg hover:bg-[#25A093] transition-colors focus:outline-none focus:ring-2 focus:ring-[#2EC4B6] focus:ring-opacity-50"
                   >
                     <ExternalLink className="w-5 h-5" />
                     Live Demo
