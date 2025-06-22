@@ -3,6 +3,7 @@ import { ExternalLink, Github, Layers, Code, PanelRight, X } from 'lucide-react'
 
 export const Projects: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
@@ -93,12 +94,37 @@ export const Projects: React.FC = () => {
     };
   }, []);
 
-  // Close dialog when clicking outside or pressing escape
+  // Handle dialog open/close and prevent body scroll
+  useEffect(() => {
+    if (selectedProject !== null) {
+      // Store original body styles
+      const originalStyle = window.getComputedStyle(document.body);
+      const originalOverflow = originalStyle.overflow;
+      const originalPaddingRight = originalStyle.paddingRight;
+      
+      // Calculate scrollbar width
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      
+      // Prevent body scroll and compensate for scrollbar
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      
+      return () => {
+        // Restore original styles
+        document.body.style.overflow = originalOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
+      };
+    }
+  }, [selectedProject]);
+
+  // Handle click outside and escape key
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-      const target = event.target as HTMLElement;
-      if (selectedProject !== null && !target.closest('.dialog-content')) {
-        setSelectedProject(null);
+      if (selectedProject !== null && dialogRef.current) {
+        const target = event.target as HTMLElement;
+        if (!dialogRef.current.contains(target)) {
+          setSelectedProject(null);
+        }
       }
     };
 
@@ -109,19 +135,16 @@ export const Projects: React.FC = () => {
     };
 
     if (selectedProject !== null) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('touchstart', handleClickOutside);
+      // Use capture phase to ensure we catch the event before it bubbles
+      document.addEventListener('mousedown', handleClickOutside, true);
+      document.addEventListener('touchstart', handleClickOutside, true);
       document.addEventListener('keydown', handleEscapeKey);
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    } else {
-      document.body.style.overflow = 'unset';
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside, true);
+      document.removeEventListener('touchstart', handleClickOutside, true);
       document.removeEventListener('keydown', handleEscapeKey);
-      document.body.style.overflow = 'unset';
     };
   }, [selectedProject]);
 
@@ -237,22 +260,34 @@ export const Projects: React.FC = () => {
         </div>
       </div>
 
-      {/* Project Details Dialog - Mobile Optimized */}
+      {/* Project Details Dialog - Fixed Scrolling */}
       {selectedProject !== null && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
-          style={{ padding: '1rem' }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm p-4"
+          style={{ 
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            overflowY: 'auto',
+            WebkitOverflowScrolling: 'touch'
+          }}
         >
           <div 
-            className="dialog-content relative w-full max-w-4xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl transform transition-all duration-300 ease-out"
+            ref={dialogRef}
+            className="relative w-full max-w-4xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl transform transition-all duration-300 ease-out my-8"
             style={{
-              maxHeight: 'calc(100vh - 2rem)',
+              maxHeight: 'calc(100vh - 4rem)',
               maxWidth: 'calc(100vw - 2rem)',
-              minHeight: '300px'
+              minHeight: '300px',
+              display: 'flex',
+              flexDirection: 'column'
             }}
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Header with close button */}
-            <div className="sticky top-0 bg-white dark:bg-gray-800 p-4 border-b border-gray-200 dark:border-gray-700 rounded-t-xl flex justify-between items-center z-10">
+            {/* Fixed Header */}
+            <div className="flex-shrink-0 bg-white dark:bg-gray-800 p-4 border-b border-gray-200 dark:border-gray-700 rounded-t-xl flex justify-between items-center">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white truncate pr-4">
                 {projects[selectedProject].title}
               </h3>
@@ -265,8 +300,14 @@ export const Projects: React.FC = () => {
               </button>
             </div>
             
-            {/* Scrollable content */}
-            <div className="overflow-y-auto" style={{ maxHeight: 'calc(100vh - 8rem)' }}>
+            {/* Scrollable Content */}
+            <div 
+              className="flex-1 overflow-y-auto"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                scrollBehavior: 'smooth'
+              }}
+            >
               {/* Project Image */}
               <div className="relative h-48 sm:h-64 overflow-hidden">
                 <img
@@ -301,7 +342,7 @@ export const Projects: React.FC = () => {
                 </div>
                 
                 {/* Action buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pb-4">
                   <a
                     href={projects[selectedProject].codeLink}
                     target="_blank"
