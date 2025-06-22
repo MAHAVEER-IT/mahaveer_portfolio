@@ -64,6 +64,7 @@ export const Projects: React.FC = () => {
   ];
 
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const dialogContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -93,7 +94,7 @@ export const Projects: React.FC = () => {
     };
   }, []);
 
-  // Close dialog when clicking outside or pressing escape
+  // Handle dialog open/close and scrolling
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       const target = event.target as HTMLElement;
@@ -108,11 +109,27 @@ export const Projects: React.FC = () => {
       }
     };
 
+    // Prevent background scrolling when dialog is open
+    const preventBackgroundScroll = (event: TouchEvent | WheelEvent) => {
+      if (selectedProject !== null) {
+        const target = event.target as HTMLElement;
+        const dialogContent = target.closest('.dialog-scrollable-content');
+        
+        if (!dialogContent) {
+          event.preventDefault();
+        }
+      }
+    };
+
     if (selectedProject !== null) {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('touchstart', handleClickOutside);
       document.addEventListener('keydown', handleEscapeKey);
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      
+      // Prevent background scrolling
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('wheel', preventBackgroundScroll, { passive: false });
+      document.addEventListener('touchmove', preventBackgroundScroll, { passive: false });
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -121,6 +138,8 @@ export const Projects: React.FC = () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
       document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener('wheel', preventBackgroundScroll);
+      document.removeEventListener('touchmove', preventBackgroundScroll);
       document.body.style.overflow = 'unset';
     };
   }, [selectedProject]);
@@ -237,22 +256,24 @@ export const Projects: React.FC = () => {
         </div>
       </div>
 
-      {/* Project Details Dialog - Mobile Optimized */}
+      {/* Project Details Dialog - Fixed Scrolling */}
       {selectedProject !== null && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
-          style={{ padding: '1rem' }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm p-4"
+          onClick={closeDialog}
         >
           <div 
-            className="dialog-content relative w-full max-w-4xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl transform transition-all duration-300 ease-out"
+            ref={dialogContentRef}
+            className="dialog-content relative w-full max-w-4xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl transform transition-all duration-300 ease-out flex flex-col"
             style={{
               maxHeight: 'calc(100vh - 2rem)',
               maxWidth: 'calc(100vw - 2rem)',
               minHeight: '300px'
             }}
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Header with close button */}
-            <div className="sticky top-0 bg-white dark:bg-gray-800 p-4 border-b border-gray-200 dark:border-gray-700 rounded-t-xl flex justify-between items-center z-10">
+            {/* Fixed Header */}
+            <div className="flex-shrink-0 bg-white dark:bg-gray-800 p-4 border-b border-gray-200 dark:border-gray-700 rounded-t-xl flex justify-between items-center">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white truncate pr-4">
                 {projects[selectedProject].title}
               </h3>
@@ -265,8 +286,14 @@ export const Projects: React.FC = () => {
               </button>
             </div>
             
-            {/* Scrollable content */}
-            <div className="overflow-y-auto" style={{ maxHeight: 'calc(100vh - 8rem)' }}>
+            {/* Scrollable Content */}
+            <div 
+              className="dialog-scrollable-content flex-1 overflow-y-auto"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                scrollBehavior: 'smooth'
+              }}
+            >
               {/* Project Image */}
               <div className="relative h-48 sm:h-64 overflow-hidden">
                 <img
@@ -301,7 +328,7 @@ export const Projects: React.FC = () => {
                 </div>
                 
                 {/* Action buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pb-4">
                   <a
                     href={projects[selectedProject].codeLink}
                     target="_blank"
