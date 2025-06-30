@@ -67,7 +67,7 @@ Note: As this is the first version of the project, some data (like holiday calen
       description: 'Developed Sow&Grow, an innovative agriculture application designed to help rural farmers monitor diseases, communicate with veterinarians, and receive vaccination alerts.',
       longDescription: `Sow&Grow is a comprehensive agriculture management application that bridges the gap between farmers and modern agricultural practices. The application was designed specifically for rural farmers who often lack access to immediate veterinary care and modern farming techniques.
 
-The app leverages machine learning algorithms to identify crop diseases through image recognition, allowing farmers to take immediate action. The communication platform connects farmers directly with certified veterinarians and agricultural experts, providing real-time consultation services.
+The app Use a Gemini AI to identify crop diseases through image recognition, allowing farmers to take immediate action. The communication platform connects farmers directly with certified veterinarians and agricultural experts, providing real-time consultation services.
 
 The vaccination alert system uses a smart scheduling algorithm that considers factors like animal age, breed, local disease patterns, and seasonal requirements to provide personalized vaccination reminders.
 
@@ -77,7 +77,7 @@ Additional features include weather forecasting integration, crop planning tools
       image: 'https://images.pexels.com/photos/2886937/pexels-photo-2886937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['Flutter', 'Dart', 'Firebase', 'Google Maps API', 'TensorFlow Lite'],
       features: [
-        'AI-powered disease detection for crops and livestock',
+        'AI-powered disease detection for crops and livestock with Gemini-AI(API)',
         'Real-time chat with veterinarians and experts',
         'Automated vaccination scheduling and reminders',
         'Multi-language voice assistance for rural users',
@@ -87,7 +87,6 @@ Additional features include weather forecasting integration, crop planning tools
         'GPS-based field mapping and monitoring'
       ],
       challenges: [
-        'Training machine learning models for accurate disease detection',
         'Designing for users with limited smartphone experience',
         'Ensuring app functionality in areas with poor internet connectivity',
         'Integrating multiple data sources for comprehensive farming insights'
