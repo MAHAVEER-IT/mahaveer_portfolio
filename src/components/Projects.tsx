@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Github, Info } from 'lucide-react';
-import { ProjectDetail } from './ProjectDetail';
 
-export const Projects: React.FC = () => {
+interface ProjectsProps {
+  onProjectSelect: (project: any) => void;
+}
+
+export const Projects: React.FC<ProjectsProps> = ({ onProjectSelect }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState<number | null>(null);
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const projects = [
     {
@@ -152,22 +154,8 @@ Real-time collaboration features enable teams to work together on shared note co
   };
 
   const openProjectDetail = (index: number) => {
-    setSelectedProject(index);
+    onProjectSelect(projects[index]);
   };
-
-  const closeProjectDetail = () => {
-    setSelectedProject(null);
-  };
-
-  // If a project is selected, show the detail page
-  if (selectedProject !== null) {
-    return (
-      <ProjectDetail 
-        project={projects[selectedProject]} 
-        onBack={closeProjectDetail}
-      />
-    );
-  }
 
   return (
     <section
