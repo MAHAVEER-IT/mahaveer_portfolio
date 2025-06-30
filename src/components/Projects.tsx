@@ -13,26 +13,46 @@ export const Projects: React.FC<ProjectsProps> = ({ onProjectSelect }) => {
     {
       title: 'Bank Insight',
       description: 'An all-in-one banking app that offers features such as balance check, mini statements, ATM blocking, customer support, loan calculators, nearby ATM/bank locator, currency converter, and expense tracker.',
-      longDescription: `Bank Insight is a comprehensive banking application designed to provide users with a seamless banking experience. The application was developed to bridge the gap between traditional banking services and modern digital convenience.
+      longDescription: `Bank Inishit is a mobile application developed to streamline access to essential banking services from multiple Indian banks within a single platform. Built using Flutter for the frontend and Firebase for authentication, the app focuses on usability, security, and practical daily banking needs.
 
-The app features a clean, intuitive interface that makes banking accessible to users of all technical backgrounds. With real-time data synchronization and secure authentication, users can manage their finances with confidence.
+Key Features:
+Secure Authentication:
+User registration and login are handled via Firebase, including email verification to ensure account security.
 
-Key highlights include an intelligent expense categorization system, interactive loan calculators with real-time interest rate updates, and a sophisticated ATM locator that uses GPS technology to find the nearest banking facilities.
+Multi-bank Integration:
+Supports four major banks: SBI, Indian Bank, Union Bank, and KVB. For each bank, users can:
 
-The currency converter integrates with live exchange rate APIs to provide accurate, up-to-the-minute conversion rates for international transactions and travel planning.`,
+Check account balance and view mini statements.
+
+Block ATM cards and contact customer care directly through the bank’s toll-free number.
+
+Locate nearby ATMs and branches via Google Maps integration.
+
+Loan Calculators:
+Dedicated calculators for personal and gold loans, customized to reflect each bank’s specific schemes (based on static data for the year 2024).
+
+Bank Holiday Calendar:
+Displays each bank's holiday schedule to help users plan their visits (static data for 2024).
+
+Additional Tools:
+Includes a real-time currency converter using an external API, a simple expense tracker to monitor spending, and an IFSC code lookup to retrieve bank branch details.
+
+Note: As this is the first version of the project, some data (like holiday calendars and loan schemes) is static.`,
       liveLink: 'https://drive.google.com/drive/folders/13j3pnF7rVRWrvD1OvyUghWhdSVP8HYQR?usp=drive_link',
       codeLink: 'https://github.com/MAHAVEER-IT/bank_inish.git',
       image: 'https://images.pexels.com/photos/7821487/pexels-photo-7821487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['Flutter', 'Firebase', 'Currency Converter API', 'Google Maps API'],
       features: [
-        'Real-time balance checking and transaction history',
-        'Secure ATM card management with instant blocking',
-        'Interactive loan calculators for multiple loan types',
-        'GPS-based ATM and bank branch locator',
-        'Live currency converter with 150+ currencies',
-        'Intelligent expense tracking and categorization',
-        'Push notifications for account activities',
-        'Biometric authentication for enhanced security'
+        'Secure login and signup with email verification using Firebase',
+        'Support for SBI, Indian Bank, Union Bank, and KVB',
+        'Balance check and mini statement for each bank via direct dail',
+        'ATM card block and customer care via direct dial',
+        'Nearby ATM and branch locator with Google Maps integration',
+        'Personal loan and gold loan calculators (static data)',
+        'Bank holiday calendar for each bank (static data)',
+        'Real-time currency converter with external API',
+        'Simple expense tracke',
+        'IFSC code lookup for bank branch details'
       ],
       challenges: [
         'Implementing secure authentication while maintaining user-friendly experience',
