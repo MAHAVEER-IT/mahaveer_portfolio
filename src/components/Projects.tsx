@@ -40,7 +40,7 @@ Includes a real-time currency converter using an external API, a simple expense 
 Note: As this is the first version of the project, some data (like holiday calendars and loan schemes) is static.`,
       liveLink: 'https://drive.google.com/drive/folders/13j3pnF7rVRWrvD1OvyUghWhdSVP8HYQR?usp=drive_link',
       codeLink: 'https://github.com/MAHAVEER-IT/bank_inish.git',
-      image: 'https://images.pexels.com/photos/7821487/pexels-photo-7821487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1751300070/ajzfnv0p6bweq3amnlbi.png',
       technologies: ['Flutter', 'Firebase', 'Currency Converter API', 'Google Maps API'],
       features: [
         'Secure login and signup with email verification using Firebase',
