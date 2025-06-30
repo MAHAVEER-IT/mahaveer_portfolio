@@ -131,6 +131,39 @@ Real-time collaboration features enable teams to work together on shared note co
       duration: '5 months',
       team: 'Solo Project'
     },
+    {
+  "title": "Blog App",
+  "description": "A simple blog app demonstrating clean architecture and BLoC pattern in Flutter.",
+  "longDescription": "This blog app was built primarily to understand and implement the clean architecture and BLoC pattern in Flutter. It allows users to create a blog by uploading an image, adding a title and content, and then publishing it. The data is stored in Firebase Firestore. Other users can like and save posts. Authentication is handled via Firebase, and a one-time login system is implemented using Hive local database.",
+  "liveLink": 'https://drive.google.com/drive/folders/1gO-ueeL_Biz7fTrmLjLf0Ol9jJhG76Io?usp=sharing',
+  "codeLink": 'https://github.com/MAHAVEER-IT/Blog_Flutter.git',
+  "image": 'https://res.cloudinary.com/dkn3it92b/image/upload/v1751316254/wiujsd62cscl3wwvq2c2.png',
+  "technologies": [
+    "Flutter",
+    "Firebase Firestore",
+    "Firebase Authentication",
+    "Hive",
+    "BLoC Pattern",
+    "Clean Architecture"
+  ],
+  "features": [
+    "Create and publish blog posts with image, title, and content",
+    "Store blogs in Firebase Firestore",
+    "User authentication with Firebase Auth",
+    "One-time login using Hive local DB",
+    "Like blog posts",
+    "Save blog posts for later"
+  ],
+  "challenges": [
+    "Implementing clean architecture effectively",
+    "Integrating BLoC with real-time Firebase updates",
+    "Handling image upload and preview",
+    "Managing local storage and one-time login with Hive"
+  ],
+  "duration": "2 weeks",
+  "team": "Solo Project"
+},
+
   ];
 
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
