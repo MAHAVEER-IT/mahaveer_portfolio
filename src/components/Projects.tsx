@@ -58,9 +58,8 @@ Note: As this is the first version of the project, some data (like holiday calen
         'Implementing secure authentication while maintaining user-friendly experience',
         'Integrating multiple third-party APIs for real-time data',
         'Designing an intuitive UI that works across different screen sizes',
-        'Ensuring data privacy and compliance with banking regulations'
       ],
-      duration: '3 months',
+      duration: '1 months',
       team: 'Solo Project'
     },
     {
