@@ -60,7 +60,7 @@ export const Home: React.FC = () => {
             ref={titleRef}
             className="text-xl md:text-2xl mb-8 opacity-0 translate-y-10 transition-all duration-1000 delay-300 ease-out"
           >
-            Developer & Designer Creating Digital Experiences
+            Flutter & Full Stack Developer
           </p>
           
           <div 
