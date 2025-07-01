@@ -163,6 +163,34 @@ Real-time collaboration features enable teams to work together on shared note co
   "duration": "2 weeks",
   "team": "Solo Project"
 },
+    {
+  "title": "Flutter Weather App",
+  "description": "A real-time weather app built using Flutter and OpenWeather API, supporting both location and city search.",
+  "longDescription": "This Flutter Weather App offers real-time weather updates by fetching data from the OpenWeather API. It includes features like temperature, humidity, wind speed, and current weather conditions with both location-based and city-name-based weather search. The UI is responsive and modern, designed to work across various screen sizes with gradient backgrounds and weather icons.",
+  "liveLink": "https://drive.google.com/drive/folders/1Xr5kTQBnjNTxuM7GS98WjtjeauRPgX_3?usp=drive_link",
+  "codeLink": "https://github.com/MAHAVEER-IT/Weather_app.git",
+  "image": "https://res.cloudinary.com/dkn3it92b/image/upload/v1751382671/gy96ggt37wcm0rugagkf.png",
+  "technologies": [
+    "Flutter",
+    "Dart",
+    "OpenWeather API"
+  ],
+  "features": [
+    "City-based weather search",
+    "Location-based weather updates",
+    "Current temperature and weather condition display",
+    "Min/Max temperature info",
+    "Humidity and wind speed monitoring",
+    "Local time and date display",
+    "Modern, responsive UI with gradient backgrounds"
+  ],
+  "challenges": [
+    "!",
+  ],
+  "duration": "1 Day",
+  "team": "Solo Project"
+},
+
 
   ];
 
