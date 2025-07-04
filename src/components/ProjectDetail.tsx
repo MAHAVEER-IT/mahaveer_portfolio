@@ -36,9 +36,9 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
   };
 
   return (
-    <div className={`min-h-screen bg-white dark:bg-gray-900 transition-all duration-500 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`min-h-screen bg-gray-900 text-white transition-all duration-500 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       {/* Header */}
-      <div className="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+      <div className="sticky top-0 z-50 bg-gray-900/90 backdrop-blur-md border-b border-gray-700">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <button
             onClick={handleBackClick}
@@ -51,7 +51,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-12 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+      <section className="relative py-12 lg:py-20 bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Project Info */}
@@ -60,20 +60,20 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
                 {project.title}
               </h1>
               
-              <p className="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="text-lg md:text-xl mb-8 text-gray-300 leading-relaxed">
                 {project.description}
               </p>
 
               {/* Project Meta */}
               <div className="flex flex-wrap gap-4 mb-8">
                 {project.duration && (
-                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 px-3 py-2 rounded-full">
+                  <div className="flex items-center gap-2 text-sm text-gray-400 bg-gray-800 px-3 py-2 rounded-full">
                     <Calendar className="w-4 h-4" />
                     <span>{project.duration}</span>
                   </div>
                 )}
                 {project.team && (
-                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 px-3 py-2 rounded-full">
+                  <div className="flex items-center gap-2 text-sm text-gray-400 bg-gray-800 px-3 py-2 rounded-full">
                     <Users className="w-4 h-4" />
                     <span>{project.team}</span>
                   </div>
@@ -119,10 +119,10 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
       </section>
 
       {/* Technologies */}
-      <section className="py-12 bg-white dark:bg-gray-900">
+      <section className="py-12 bg-gray-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`transform transition-all duration-700 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">
               <span className="pb-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:rounded-full after:bg-gradient-to-r after:from-[#6C63FF] after:to-[#2EC4B6]">
                 Technologies Used
               </span>
@@ -132,7 +132,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
               {project.technologies.map((tech, index) => (
                 <span
                   key={index}
-                  className={`px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-[#6C63FF] hover:text-[#6C63FF] text-gray-700 dark:text-gray-300
+                  className={`px-4 py-2 bg-gray-800 rounded-full text-sm font-medium shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 border border-gray-700 hover:border-[#6C63FF] hover:text-[#6C63FF] text-gray-300
                             ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                   style={{ transitionDelay: `${index * 100 + 700}ms` }}
                 >
@@ -145,19 +145,19 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
       </section>
 
       {/* Detailed Description */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 bg-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className={`transform transition-all duration-700 delay-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900 dark:text-white">
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-white">
                 <span className="pb-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:rounded-full after:bg-gradient-to-r after:from-[#6C63FF] after:to-[#2EC4B6]">
                   Project Overview
                 </span>
               </h2>
               
-              <div className="prose dark:prose-invert max-w-none">
+              <div className="prose prose-invert max-w-none">
                 {project.longDescription.split('\n').map((paragraph, index) => (
-                  <p key={index} className="mb-6 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+                  <p key={index} className="mb-6 text-lg leading-relaxed text-gray-300">
                     {paragraph}
                   </p>
                 ))}
@@ -167,7 +167,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
             {/* Features Section */}
             {project.features && (
               <div className={`mt-16 transform transition-all duration-700 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                <h3 className="text-xl md:text-2xl font-bold mb-6 flex items-center text-gray-900 dark:text-white">
+                <h3 className="text-xl md:text-2xl font-bold mb-6 flex items-center text-white">
                   <Code className="w-6 h-6 mr-3 text-[#6C63FF]" />
                   Key Features
                 </h3>
@@ -175,10 +175,10 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
                   {project.features.map((feature, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-3 p-4 bg-white dark:bg-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200 shadow-sm"
+                      className="flex items-start gap-3 p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors duration-200 shadow-sm"
                     >
                       <div className="w-2 h-2 rounded-full bg-[#6C63FF] mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                      <span className="text-gray-300">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -188,14 +188,14 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
             {/* Challenges Section */}
             {project.challenges && (
               <div className={`mt-16 transform transition-all duration-700 delay-1200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                <h3 className="text-xl md:text-2xl font-bold mb-6 text-gray-900 dark:text-white">Challenges & Solutions</h3>
+                <h3 className="text-xl md:text-2xl font-bold mb-6 text-white">Challenges & Solutions</h3>
                 <div className="space-y-4">
                   {project.challenges.map((challenge, index) => (
                     <div
                       key={index}
-                      className="p-6 bg-white dark:bg-gray-700 rounded-lg border-l-4 border-[#6C63FF] shadow-sm"
+                      className="p-6 bg-gray-700 rounded-lg border-l-4 border-[#6C63FF] shadow-sm"
                     >
-                      <p className="text-gray-700 dark:text-gray-300">{challenge}</p>
+                      <p className="text-gray-300">{challenge}</p>
                     </div>
                   ))}
                 </div>
