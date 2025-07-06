@@ -12,6 +12,15 @@
   }
 }
 
+@keyframes butterflyGlow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 5px currentColor) drop-shadow(0 0 10px currentColor);
+  }
+  50% { 
+    filter: drop-shadow(0 0 10px currentColor) drop-shadow(0 0 20px currentColor);
+  }
+}
+
 .gradient-text {
   background: linear-gradient(to right, #6C63FF, #2EC4B6, #FFD700, #6C63FF);
   background-size: 200% auto;
@@ -86,4 +95,16 @@ p {
 
 .navbar-layer {
   z-index: 50;
+}
+
+/* Ensure butterflies appear behind content but above background */
+canvas {
+  z-index: 1 !important;
+}
+
+/* Subtle performance optimizations */
+.butterfly-container {
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
