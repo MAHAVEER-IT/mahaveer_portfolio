@@ -9,12 +9,12 @@ export const Skills: React.FC = () => {
     {
       title: 'Programming Languages',
       icon: <Code className="w-6 h-6 text-[#6C63FF]" />,
-      skills: ['JavaScript', 'Python', 'Java', 'C++', 'Dart']
+      skills: ['JavaScript', 'Java', 'C++', 'Dart']
     },
     {
       title: 'Frameworks & Libraries',
       icon: <Server className="w-6 h-6 text-[#2EC4B6]" />,
-      skills: ['React', 'Node.js', 'Express', 'Flutter']
+      skills: ['React', 'Node.js', 'Flutter']
     },
     {
       title: 'Databases',
