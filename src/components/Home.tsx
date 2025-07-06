@@ -35,13 +35,13 @@ export const Home: React.FC = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Clean gradient background */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
+      {/* Animated gradient background */}
+      <div className="absolute top-0 left-0 w-full h-full animated-bg opacity-20"></div>
 
-      {/* Subtle accent shapes */}
-      <div className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-[#6C63FF]/20 to-[#2EC4B6]/20 top-1/4 -left-20"></div>
-      <div className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-[#FFD700]/20 to-[#FF6B6B]/20 bottom-1/4 right-0"></div>
-      <div className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-[#4158D0]/20 to-[#3579F6]/20 bottom-1/3 left-1/3"></div>
+      {/* Floating accent shapes */}
+      <div className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-[#6C63FF]/30 to-[#2EC4B6]/30 top-1/4 -left-32 floating"></div>
+      <div className="absolute w-80 h-80 rounded-full bg-gradient-to-r from-[#FFD700]/30 to-[#FF6B6B]/30 bottom-1/4 -right-20 floating" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-[#4158D0]/30 to-[#3579F6]/30 bottom-1/3 left-1/3 floating" style={{ animationDelay: '4s' }}></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
         <div className="text-center max-w-4xl mx-auto">

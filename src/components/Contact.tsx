@@ -149,7 +149,7 @@ export const Contact: React.FC = () => {
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <div
             ref={infoRef}
-            className="space-y-6 p-6 rounded-lg bg-white/5 backdrop-blur-sm"
+            className="space-y-6 p-6 rounded-lg bg-slate-800/80 backdrop-blur-sm"
           >
             <div className="flex items-center space-x-4">
               <Mail className="w-6 h-6 text-primary" />
@@ -172,7 +172,7 @@ export const Contact: React.FC = () => {
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="space-y-4 p-6 rounded-lg bg-white/5 backdrop-blur-sm"
+            className="space-y-4 p-6 rounded-lg bg-slate-800/80 backdrop-blur-sm"
           >
             <div>
               <input
@@ -181,7 +181,7 @@ export const Contact: React.FC = () => {
                 value={formState.name}
                 onChange={handleInputChange}
                 placeholder="Your Name"
-                className={`w-full p-3 rounded-lg bg-white/10 backdrop-blur-sm border ${
+                className={`w-full p-3 rounded-lg bg-slate-700/80 backdrop-blur-sm border ${
                   formErrors.name ? 'border-red-500' : 'border-transparent'
                 } focus:border-primary focus:ring-1 focus:ring-primary outline-none`}
               />
@@ -200,7 +200,7 @@ export const Contact: React.FC = () => {
                 value={formState.email}
                 onChange={handleInputChange}
                 placeholder="Your Email"
-                className={`w-full p-3 rounded-lg bg-white/10 backdrop-blur-sm border ${
+                className={`w-full p-3 rounded-lg bg-slate-700/80 backdrop-blur-sm border ${
                   formErrors.email ? 'border-red-500' : 'border-transparent'
                 } focus:border-primary focus:ring-1 focus:ring-primary outline-none`}
               />
@@ -219,7 +219,7 @@ export const Contact: React.FC = () => {
                 onChange={handleInputChange}
                 placeholder="Your Message"
                 rows={4}
-                className={`w-full p-3 rounded-lg bg-white/10 backdrop-blur-sm border ${
+                className={`w-full p-3 rounded-lg bg-slate-700/80 backdrop-blur-sm border ${
                   formErrors.message ? 'border-red-500' : 'border-transparent'
                 } focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none`}
               />
