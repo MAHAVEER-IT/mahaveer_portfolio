@@ -158,7 +158,7 @@ export const ButterflyBackground: React.FC = () => {
         butterfly.trail.push({
           x: butterfly.x,
           y: butterfly.y,
-          opacity: 0.7 // Brighter trail
+          opacity: 1 // Brighter trail
         });
       }
 
