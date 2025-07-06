@@ -377,16 +377,6 @@ export const Contact: React.FC = () => {
                 <p className="text-sm leading-relaxed">{submitStatus.message}</p>
               </div>
             )}
-
-            {/* EmailJS Setup Notice */}
-            {!import.meta.env.VITE_EMAILJS_SERVICE_ID && (
-              <div className="mt-4 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30">
-                <p className="text-blue-400 text-xs">
-                  <strong>Note:</strong> EmailJS is not configured. The form will work in demo mode. 
-                  To enable real email sending, configure EmailJS environment variables.
-                </p>
-              </div>
-            )}
           </form>
         </div>
       </div>
