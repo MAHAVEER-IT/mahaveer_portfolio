@@ -12,4 +12,3 @@ export const TopologyBackground: React.FC = () => {
     </div>
   );
 };
-</ButterflyBackground>
