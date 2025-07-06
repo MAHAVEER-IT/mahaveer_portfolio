@@ -128,7 +128,7 @@ Real-time collaboration features enable teams to work together on shared note co
         'Creating an intuitive drag-and-drop interface',
         'Balancing feature richness with application performance'
       ],
-      duration: '5 months',
+      duration: '3 Weeks',
       team: 'Solo Project'
     },
     {
