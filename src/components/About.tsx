@@ -58,7 +58,7 @@ export const About: React.FC = () => {
   return (
     <section 
       id="about" 
-      className="section-padding relative bg-slate-800"
+      className="section-padding relative section-with-butterflies"
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,7 +98,7 @@ export const About: React.FC = () => {
             ref={bioRef}
             className="opacity-0 translate-y-10 transition-all duration-1000 delay-300 ease-out"
           >
-            <div className="perspective-container card-hover p-6 rounded-xl shadow-xl bg-slate-700">
+            <div className="perspective-container card-hover p-6 rounded-xl shadow-xl card-transparent">
               <h3 className="text-2xl font-semibold mb-6 flex items-center">
                 <User className="w-6 h-6 mr-3 text-[#6C63FF]" />
                 <span>Personal Info</span>
@@ -134,7 +134,7 @@ export const About: React.FC = () => {
             ref={educationRef}
             className="opacity-0 translate-y-10 transition-all duration-1000 delay-600 ease-out"
           >
-            <div className="perspective-container card-hover p-6 rounded-xl shadow-xl bg-slate-700">
+            <div className="perspective-container card-hover p-6 rounded-xl shadow-xl card-transparent">
               <h3 className="text-2xl font-semibold mb-6 flex items-center">
                 <GraduationCap className="w-6 h-6 mr-3 text-[#6C63FF]" />
                 <span>Education</span>

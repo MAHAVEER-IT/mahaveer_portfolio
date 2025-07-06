@@ -84,27 +84,46 @@ p {
   outline-offset: 2px;
 }
 
-.main-content {
-  position: relative;
-  z-index: 10;
-}
-
+/* Z-index layering system */
 .background-layer {
   z-index: 0;
+}
+
+.butterfly-layer {
+  z-index: 1;
+}
+
+.main-content {
+  position: relative;
+  z-index: 5;
 }
 
 .navbar-layer {
   z-index: 50;
 }
 
-/* Ensure butterflies appear behind content but above background */
-canvas {
-  z-index: 1 !important;
+/* Make sections semi-transparent to show butterflies */
+.section-with-butterflies {
+  background-color: rgba(30, 41, 59, 0.85) !important;
+  backdrop-filter: blur(1px);
 }
 
-/* Subtle performance optimizations */
+/* Ensure butterflies are visible */
+canvas {
+  z-index: 1 !important;
+  pointer-events: none;
+}
+
+/* Performance optimizations */
 .butterfly-container {
   will-change: transform;
   backface-visibility: hidden;
   perspective: 1000px;
+}
+
+/* Card backgrounds with transparency */
+.card-transparent {
+  background: rgba(51, 65, 85, 0.8) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
 }

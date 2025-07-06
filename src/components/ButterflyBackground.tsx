@@ -47,17 +47,17 @@ export const ButterflyBackground: React.FC = () => {
     // Initialize butterflies
     const initializeButterflies = () => {
       butterfliesRef.current = [];
-      for (let i = 0; i < 7; i++) {
+      for (let i = 0; i < 8; i++) { // Increased to 8 butterflies
         butterfliesRef.current.push({
           id: i,
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: 20 + Math.random() * 30, // 20px to 50px
-          speed: 0.3 + Math.random() * 0.7, // Slow, graceful movement
+          size: 25 + Math.random() * 25, // 25px to 50px
+          speed: 0.4 + Math.random() * 0.6, // Slightly faster for better visibility
           direction: Math.random() * Math.PI * 2,
           wingPhase: Math.random() * Math.PI * 2,
           color: colors[Math.floor(Math.random() * colors.length)],
-          opacity: 0.3 + Math.random() * 0.4, // 0.3 to 0.7 opacity
+          opacity: 0.6 + Math.random() * 0.3, // Increased opacity (0.6 to 0.9)
           trail: []
         });
       }
@@ -72,28 +72,28 @@ export const ButterflyBackground: React.FC = () => {
       ctx.save();
       ctx.translate(x, y);
       
-      // Create glow effect
+      // Enhanced glow effect
       ctx.shadowColor = color;
-      ctx.shadowBlur = size * 0.8;
+      ctx.shadowBlur = size * 1.2; // Increased glow
       ctx.globalAlpha = opacity;
 
       // Wing animation (subtle flapping)
-      const wingOffset = Math.sin(wingPhase) * 0.3;
+      const wingOffset = Math.sin(wingPhase) * 0.4; // Slightly more wing movement
       
       // Draw butterfly body
       ctx.fillStyle = color;
       ctx.beginPath();
-      ctx.ellipse(0, 0, size * 0.05, size * 0.4, 0, 0, Math.PI * 2);
+      ctx.ellipse(0, 0, size * 0.06, size * 0.4, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Draw wings
+      // Draw wings with enhanced visibility
       ctx.fillStyle = color;
       
       // Left upper wing
       ctx.save();
       ctx.rotate(wingOffset);
       ctx.beginPath();
-      ctx.ellipse(-size * 0.15, -size * 0.2, size * 0.25, size * 0.35, -0.3, 0, Math.PI * 2);
+      ctx.ellipse(-size * 0.15, -size * 0.2, size * 0.28, size * 0.38, -0.3, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
 
@@ -101,7 +101,7 @@ export const ButterflyBackground: React.FC = () => {
       ctx.save();
       ctx.rotate(-wingOffset);
       ctx.beginPath();
-      ctx.ellipse(size * 0.15, -size * 0.2, size * 0.25, size * 0.35, 0.3, 0, Math.PI * 2);
+      ctx.ellipse(size * 0.15, -size * 0.2, size * 0.28, size * 0.38, 0.3, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
 
@@ -109,7 +109,7 @@ export const ButterflyBackground: React.FC = () => {
       ctx.save();
       ctx.rotate(wingOffset * 0.7);
       ctx.beginPath();
-      ctx.ellipse(-size * 0.1, size * 0.1, size * 0.15, size * 0.2, -0.2, 0, Math.PI * 2);
+      ctx.ellipse(-size * 0.1, size * 0.1, size * 0.18, size * 0.22, -0.2, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
 
@@ -117,7 +117,7 @@ export const ButterflyBackground: React.FC = () => {
       ctx.save();
       ctx.rotate(-wingOffset * 0.7);
       ctx.beginPath();
-      ctx.ellipse(size * 0.1, size * 0.1, size * 0.15, size * 0.2, 0.2, 0, Math.PI * 2);
+      ctx.ellipse(size * 0.1, size * 0.1, size * 0.18, size * 0.22, 0.2, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
 
@@ -131,9 +131,9 @@ export const ButterflyBackground: React.FC = () => {
         ctx.globalAlpha = point.opacity;
         ctx.fillStyle = butterfly.color;
         ctx.shadowColor = butterfly.color;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 10; // Enhanced trail glow
         
-        const sparkleSize = (butterfly.size * 0.1) * (point.opacity / 0.5);
+        const sparkleSize = (butterfly.size * 0.12) * (point.opacity / 0.7);
         ctx.beginPath();
         ctx.arc(point.x, point.y, sparkleSize, 0, Math.PI * 2);
         ctx.fill();
@@ -144,40 +144,40 @@ export const ButterflyBackground: React.FC = () => {
     // Update butterfly position and animation
     const updateButterfly = (butterfly: Butterfly) => {
       // Natural flight pattern with gentle curves
-      butterfly.direction += (Math.random() - 0.5) * 0.1;
+      butterfly.direction += (Math.random() - 0.5) * 0.12;
       butterfly.x += Math.cos(butterfly.direction) * butterfly.speed;
-      butterfly.y += Math.sin(butterfly.direction) * butterfly.speed + Math.sin(Date.now() * 0.001 + butterfly.id) * 0.2;
+      butterfly.y += Math.sin(butterfly.direction) * butterfly.speed + Math.sin(Date.now() * 0.001 + butterfly.id) * 0.3;
 
       // Wing animation
-      butterfly.wingPhase += 0.15;
+      butterfly.wingPhase += 0.18; // Slightly faster wing movement
 
       // Add to trail
       if (butterfly.trail.length === 0 || 
-          Math.abs(butterfly.trail[butterfly.trail.length - 1].x - butterfly.x) > 5 ||
-          Math.abs(butterfly.trail[butterfly.trail.length - 1].y - butterfly.y) > 5) {
+          Math.abs(butterfly.trail[butterfly.trail.length - 1].x - butterfly.x) > 4 ||
+          Math.abs(butterfly.trail[butterfly.trail.length - 1].y - butterfly.y) > 4) {
         butterfly.trail.push({
           x: butterfly.x,
           y: butterfly.y,
-          opacity: 0.5
+          opacity: 0.7 // Brighter trail
         });
       }
 
       // Update trail opacity and remove old points
       butterfly.trail = butterfly.trail.map(point => ({
         ...point,
-        opacity: point.opacity * 0.95
-      })).filter(point => point.opacity > 0.05);
+        opacity: point.opacity * 0.94 // Slower fade
+      })).filter(point => point.opacity > 0.08);
 
       // Keep trail length manageable
-      if (butterfly.trail.length > 15) {
+      if (butterfly.trail.length > 18) {
         butterfly.trail.shift();
       }
 
       // Wrap around screen edges with smooth transition
-      if (butterfly.x < -50) butterfly.x = canvas.width + 50;
-      if (butterfly.x > canvas.width + 50) butterfly.x = -50;
-      if (butterfly.y < -50) butterfly.y = canvas.height + 50;
-      if (butterfly.y > canvas.height + 50) butterfly.y = -50;
+      if (butterfly.x < -60) butterfly.x = canvas.width + 60;
+      if (butterfly.x > canvas.width + 60) butterfly.x = -60;
+      if (butterfly.y < -60) butterfly.y = canvas.height + 60;
+      if (butterfly.y > canvas.height + 60) butterfly.y = -60;
     };
 
     // Animation loop
@@ -206,10 +206,11 @@ export const ButterflyBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-1"
+      className="butterfly-layer fixed top-0 left-0 w-full h-full pointer-events-none"
       style={{ 
         background: 'transparent',
-        mixBlendMode: 'screen' // Creates a beautiful luminous effect
+        mixBlendMode: 'screen', // Creates a beautiful luminous effect
+        zIndex: 1
       }}
     />
   );
