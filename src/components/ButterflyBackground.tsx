@@ -74,7 +74,7 @@ export const ButterflyBackground: React.FC = () => {
       
       // Enhanced glow effect
       ctx.shadowColor = color;
-      ctx.shadowBlur = size * 1.2; // Increased glow
+      ctx.shadowBlur = size * 1; // Increased glow
       ctx.globalAlpha = opacity;
 
       // Wing animation (subtle flapping)
