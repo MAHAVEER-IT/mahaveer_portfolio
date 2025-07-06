@@ -35,17 +35,13 @@ export const Home: React.FC = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="animated-bg w-full h-full opacity-10"></div>
-      </div>
+      {/* Clean gradient background */}
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
 
-      {/* 3D Shapes */}
-      <div className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] filter blur-3xl opacity-20 animate-blob top-1/4 -left-20"></div>
-      <div className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FF6B6B] filter blur-3xl opacity-20 animate-blob animation-delay-2000 bottom-1/4 right-0"></div>
-      <div className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-[#4158D0] to-[#3579F6] filter blur-3xl opacity-20 animate-blob animation-delay-4000 bottom-1/3 left-1/3"></div>
-
-      <div className="grain-overlay"></div>
+      {/* Subtle accent shapes */}
+      <div className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-[#6C63FF]/20 to-[#2EC4B6]/20 top-1/4 -left-20"></div>
+      <div className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-[#FFD700]/20 to-[#FF6B6B]/20 bottom-1/4 right-0"></div>
+      <div className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-[#4158D0]/20 to-[#3579F6]/20 bottom-1/3 left-1/3"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
         <div className="text-center max-w-4xl mx-auto">
@@ -58,7 +54,7 @@ export const Home: React.FC = () => {
           
           <p 
             ref={titleRef}
-            className="text-xl md:text-2xl mb-8 opacity-0 translate-y-10 transition-all duration-1000 delay-300 ease-out"
+            className="text-xl md:text-2xl mb-8 opacity-0 translate-y-10 transition-all duration-1000 delay-300 ease-out text-slate-300"
           >
             Flutter & Full Stack Developer
           </p>
@@ -69,7 +65,7 @@ export const Home: React.FC = () => {
           >
             <a 
               href="#projects" 
-              className="inline-block bg-[#6C63FF] hover:bg-[#5A52D5] text-white font-medium py-3 px-8 rounded-full shadow-lg transform hover:-translate-y-1 transition-all duration-300 ease-out btn-3d"
+              className="inline-block bg-[#6C63FF] hover:bg-[#5A52D5] text-white font-medium py-3 px-8 rounded-full shadow-lg transform hover:-translate-y-1 transition-all duration-300 ease-out"
               aria-label="View my work"
             >
               View My Work
@@ -84,7 +80,7 @@ export const Home: React.FC = () => {
               href="https://github.com/MAHAVEER-IT" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-3 rounded-full border border-gray-300 hover:border-[#6C63FF] hover:text-[#6C63FF] transform hover:-translate-y-1 transition-all duration-300"
+              className="p-3 rounded-full border border-slate-600 hover:border-[#6C63FF] hover:text-[#6C63FF] transform hover:-translate-y-1 transition-all duration-300 text-slate-300"
               aria-label="GitHub Profile"
             >
               <Github className="w-5 h-5" />
@@ -93,14 +89,14 @@ export const Home: React.FC = () => {
               href="www.linkedin.com/in/mahaveer-k" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-3 rounded-full border border-gray-300 hover:border-[#6C63FF] hover:text-[#6C63FF] transform hover:-translate-y-1 transition-all duration-300"
+              className="p-3 rounded-full border border-slate-600 hover:border-[#6C63FF] hover:text-[#6C63FF] transform hover:-translate-y-1 transition-all duration-300 text-slate-300"
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <a 
               href="#" 
-              className="p-3 rounded-full border border-gray-300 hover:border-[#6C63FF] hover:text-[#6C63FF] transform hover:-translate-y-1 transition-all duration-300"
+              className="p-3 rounded-full border border-slate-600 hover:border-[#6C63FF] hover:text-[#6C63FF] transform hover:-translate-y-1 transition-all duration-300 text-slate-300"
               aria-label="Portfolio"
             >
               <ExternalLink className="w-5 h-5" />

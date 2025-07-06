@@ -58,7 +58,7 @@ export const About: React.FC = () => {
   return (
     <section 
       id="about" 
-      className="section-padding relative"
+      className="section-padding relative bg-slate-800"
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,19 +102,19 @@ export const About: React.FC = () => {
             ref={bioRef}
             className="opacity-0 translate-y-10 transition-all duration-1000 delay-300 ease-out"
           >
-            <div className="perspective-container card-hover p-6 rounded-xl shadow-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+            <div className="perspective-container card-hover p-6 rounded-xl shadow-xl bg-slate-700">
               <h3 className="text-2xl font-semibold mb-6 flex items-center">
                 <User className="w-6 h-6 mr-3 text-[#6C63FF]" />
                 <span>Personal Info</span>
               </h3>
               
               <div className="space-y-4 mb-8">
-                <p className="text-lg leading-relaxed">
+                <p className="text-lg leading-relaxed text-slate-300">
                   I'm a passionate developer and creative problem-solver with a focus on creating
                   impactful digital solutions. Currently pursuing my B.Tech, I specialize in web development,
                   mobile applications, and software engineering.
                 </p>
-                <p className="text-lg leading-relaxed">
+                <p className="text-lg leading-relaxed text-slate-300">
                   When I'm not coding, I enjoy exploring new technologies, participating in
                   hackathons, and contributing to open-source projects.
                 </p>
@@ -123,11 +123,11 @@ export const About: React.FC = () => {
               <div className="space-y-3">
                 <div className="flex items-center">
                   <Phone className="w-5 h-5 mr-3 text-[#6C63FF]" />
-                  <span>+91 6374827794</span>
+                  <span className="text-slate-300">+91 6374827794</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 mr-3 text-[#6C63FF]" />
-                  <span>mahaveer.k2023it@sece.ac.in</span>
+                  <span className="text-slate-300">mahaveer.k2023it@sece.ac.in</span>
                 </div>
               </div>
             </div>
@@ -138,7 +138,7 @@ export const About: React.FC = () => {
             ref={educationRef}
             className="opacity-0 translate-y-10 transition-all duration-1000 delay-600 ease-out"
           >
-            <div className="perspective-container card-hover p-6 rounded-xl shadow-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+            <div className="perspective-container card-hover p-6 rounded-xl shadow-xl bg-slate-700">
               <h3 className="text-2xl font-semibold mb-6 flex items-center">
                 <GraduationCap className="w-6 h-6 mr-3 text-[#6C63FF]" />
                 <span>Education</span>
@@ -151,10 +151,10 @@ export const About: React.FC = () => {
                     className="relative pl-8 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-gradient-to-b before:from-[#6C63FF] before:to-transparent"
                   >
                     <div className="absolute left-0 top-0 w-2 h-2 rounded-full bg-[#6C63FF] transform -translate-x-1/2"></div>
-                    <h4 className="text-xl font-medium">{item.degree}</h4>
-                    <p className="text-sm opacity-75">{item.duration}</p>
-                    <p className="mt-1">{item.institution}</p>
-                    <p className="text-sm mt-1 opacity-80">{item.details}</p>
+                    <h4 className="text-xl font-medium text-white">{item.degree}</h4>
+                    <p className="text-sm text-slate-400">{item.duration}</p>
+                    <p className="mt-1 text-slate-300">{item.institution}</p>
+                    <p className="text-sm mt-1 text-slate-400">{item.details}</p>
                   </div>
                 ))}
               </div>
