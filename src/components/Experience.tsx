@@ -40,7 +40,7 @@ export const Experience: React.FC = () => {
                 <div className="flex flex-wrap items-center gap-4 text-sm mb-4">
                   <div className="flex items-center">
                     <Calendar className="w-4 h-4 mr-1 opacity-75" />
-                    <span>Jan 2025 – Mar 2025</span>
+                    <span>Feb 2025 – Mar 2025</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="w-4 h-4 mr-1 opacity-75" />
