@@ -1,38 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import MyImage from '../../public/me.png'
 import { GraduationCap, User, Phone, Mail, MapPin, Calendar } from 'lucide-react';
+import { useScrollAnimation } from '../utils/useScrollAnimation';
 
 export const About: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const bioRef = useRef<HTMLDivElement>(null);
-  const educationRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-10');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    if (bioRef.current) observer.observe(bioRef.current);
-    if (educationRef.current) observer.observe(educationRef.current);
-    if (imageRef.current) observer.observe(imageRef.current);
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-      if (bioRef.current) observer.unobserve(bioRef.current);
-      if (educationRef.current) observer.unobserve(educationRef.current);
-      if (imageRef.current) observer.unobserve(imageRef.current);
-    };
-  }, []);
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   const education = [
     {
@@ -75,23 +47,80 @@ export const About: React.FC = () => {
           About Me
         </h2>
 
-        {/* Profile Section */}
+        {/* Profile Section with Animations */}
         <div 
-          ref={imageRef}
-          className="flex justify-center mb-16 opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+          className={`flex justify-center mb-16 transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
         >
           <div className="relative group">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] p-1 group-hover:p-1.5 transition-all duration-300">
+            {/* Animated Floating Dots */}
+            <div className="absolute inset-0 pointer-events-none">
+              {/* Top Right Dot */}
+              <div className="absolute top-4 right-4 w-3 h-3 bg-[#6C63FF] rounded-full animate-bounce-dot-1"></div>
+              
+              {/* Top Left Dot */}
+              <div className="absolute top-8 left-2 w-2 h-2 bg-[#2EC4B6] rounded-full animate-bounce-dot-2"></div>
+              
+              {/* Bottom Right Dot */}
+              <div className="absolute bottom-6 right-2 w-2.5 h-2.5 bg-[#FFD700] rounded-full animate-bounce-dot-3"></div>
+              
+              {/* Bottom Left Dot */}
+              <div className="absolute bottom-2 left-6 w-2 h-2 bg-[#6C63FF] rounded-full animate-bounce-dot-4"></div>
+              
+              {/* Side Dots */}
+              <div className="absolute top-1/2 right-0 w-1.5 h-1.5 bg-[#2EC4B6] rounded-full animate-bounce-dot-5"></div>
+              <div className="absolute top-1/3 left-0 w-1.5 h-1.5 bg-[#FFD700] rounded-full animate-bounce-dot-6"></div>
+            </div>
+
+            {/* Pulsing Ring Animation */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#6C63FF]/20 to-[#2EC4B6]/20 animate-pulse"></div>
+            
+            {/* Rotating Border */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#6C63FF] via-[#2EC4B6] to-[#FFD700] p-1 group-hover:p-1.5 transition-all duration-300 animate-spin-slow">
               <div className="w-full h-full rounded-full bg-slate-800"></div>
             </div>
             
+            {/* Inner Glow Effect */}
+            <div className="absolute inset-2 rounded-full bg-gradient-to-r from-[#6C63FF]/10 to-[#2EC4B6]/10 blur-sm animate-pulse-slow"></div>
+            
             <div className="relative w-48 h-48 md:w-56 md:h-56 m-1">
-              <div className="w-full h-full rounded-full overflow-hidden shadow-2xl transform group-hover:scale-105 transition-all duration-500 ease-out">
+              <div className="w-full h-full rounded-full overflow-hidden shadow-2xl transform group-hover:scale-105 group-hover:rotate-3 transition-all duration-500 ease-out">
                 <img
                   src={MyImage}
                   alt="Mahaveer K - Professional Profile"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
+                
+                {/* Image Overlay Effect on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#6C63FF]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              
+              {/* Status Indicator */}
+              <div className="absolute bottom-2 right-2 flex items-center space-x-1">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
+                <div className="hidden group-hover:block text-xs text-white bg-slate-800/80 backdrop-blur-sm px-2 py-1 rounded-md animate-fade-in">
+                  Available
+                </div>
+              </div>
+            </div>
+
+            {/* Floating Skills Tags */}
+            <div className="absolute -top-6 -left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 transform translate-y-2 group-hover:translate-y-0">
+              <div className="bg-[#6C63FF]/90 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md shadow-lg animate-bounce-tag-1">
+                Flutter
+              </div>
+            </div>
+            
+            <div className="absolute -top-4 -right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-400 transform translate-y-2 group-hover:translate-y-0">
+              <div className="bg-[#2EC4B6]/90 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md shadow-lg animate-bounce-tag-2">
+                React
+              </div>
+            </div>
+            
+            <div className="absolute -bottom-4 -left-6 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-600 transform translate-y-2 group-hover:translate-y-0">
+              <div className="bg-[#FFD700]/90 backdrop-blur-sm text-slate-800 text-xs px-2 py-1 rounded-md shadow-lg animate-bounce-tag-3">
+                MERN
               </div>
             </div>
           </div>
@@ -100,8 +129,9 @@ export const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Personal Information & Bio */}
           <div 
-            ref={bioRef}
-            className="opacity-0 translate-y-10 transition-all duration-1000 delay-300 ease-out"
+            className={`transition-all duration-1000 delay-300 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
           >
             <div className="professional-card p-8">
               <h3 className="text-2xl font-semibold mb-6 flex items-center text-white">
@@ -150,8 +180,9 @@ export const About: React.FC = () => {
 
           {/* Education */}
           <div 
-            ref={educationRef}
-            className="opacity-0 translate-y-10 transition-all duration-1000 delay-600 ease-out"
+            className={`transition-all duration-1000 delay-600 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
           >
             <div className="professional-card p-8">
               <h3 className="text-2xl font-semibold mb-6 flex items-center text-white">
@@ -195,27 +226,6 @@ export const About: React.FC = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Professional Summary */}
-        <div className="mt-16 text-center">
-          <div className="professional-card p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-6 text-white">Professional Summary</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#6C63FF] mb-2">2+</div>
-                <p className="text-slate-300">Years of Learning</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#2EC4B6] mb-2">10+</div>
-                <p className="text-slate-300">Projects Completed</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#FFD700] mb-2">5+</div>
-                <p className="text-slate-300">Technologies Mastered</p>
               </div>
             </div>
           </div>

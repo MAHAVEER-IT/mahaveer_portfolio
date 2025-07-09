@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Send, Mail, Phone, Map, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { useScrollAnimation } from '../utils/useScrollAnimation';
 
 interface FormData {
   name: string;
@@ -15,10 +16,7 @@ interface FormErrors {
 }
 
 export const Contact: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-  const infoRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLDivElement>();
   const [formState, setFormState] = useState<FormData>({
     name: '',
     email: '',
@@ -144,27 +142,6 @@ export const Contact: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   // Initialize EmailJS only if environment variables are available
   useEffect(() => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -191,10 +168,9 @@ export const Contact: React.FC = () => {
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact Information */}
           <div
-            ref={infoRef}
-            className={`space-y-6 p-8 rounded-xl card-transparent shadow-xl transition-all duration-1000 ease-out transform
+            className={`space-y-6 p-8 rounded-2xl bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 shadow-2xl transition-all duration-1000 ease-out transform hover:scale-[1.02] hover:shadow-[#6C63FF]/20 hover:shadow-2xl
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-            style={{ transitionDelay: '200ms' }}
+            style={{ animationDelay: '200ms' }}
           >
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-4 text-white">Let's Connect</h3>
@@ -205,8 +181,8 @@ export const Contact: React.FC = () => {
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-center space-x-4 group">
-                <div className="p-3 rounded-full bg-[#6C63FF]/20 border border-[#6C63FF]/30 group-hover:bg-[#6C63FF]/30 transition-all duration-300">
+              <div className="flex items-center space-x-4 group p-4 rounded-xl bg-slate-700/30 backdrop-blur-sm border border-slate-600/30 hover:border-[#6C63FF]/40 hover:bg-slate-700/50 transition-all duration-300">
+                <div className="p-3 rounded-full bg-[#6C63FF]/20 border border-[#6C63FF]/30 group-hover:bg-[#6C63FF]/40 group-hover:scale-110 transition-all duration-300 backdrop-blur-sm">
                   <Mail className="w-6 h-6 text-[#6C63FF]" />
                 </div>
                 <div>
@@ -220,8 +196,8 @@ export const Contact: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 group">
-                <div className="p-3 rounded-full bg-[#2EC4B6]/20 border border-[#2EC4B6]/30 group-hover:bg-[#2EC4B6]/30 transition-all duration-300">
+              <div className="flex items-center space-x-4 group p-4 rounded-xl bg-slate-700/30 backdrop-blur-sm border border-slate-600/30 hover:border-[#2EC4B6]/40 hover:bg-slate-700/50 transition-all duration-300">
+                <div className="p-3 rounded-full bg-[#2EC4B6]/20 border border-[#2EC4B6]/30 group-hover:bg-[#2EC4B6]/40 group-hover:scale-110 transition-all duration-300 backdrop-blur-sm">
                   <Phone className="w-6 h-6 text-[#2EC4B6]" />
                 </div>
                 <div>
@@ -235,8 +211,8 @@ export const Contact: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 group">
-                <div className="p-3 rounded-full bg-[#FFD700]/20 border border-[#FFD700]/30 group-hover:bg-[#FFD700]/30 transition-all duration-300">
+              <div className="flex items-center space-x-4 group p-4 rounded-xl bg-slate-700/30 backdrop-blur-sm border border-slate-600/30 hover:border-[#FFD700]/40 hover:bg-slate-700/50 transition-all duration-300">
+                <div className="p-3 rounded-full bg-[#FFD700]/20 border border-[#FFD700]/30 group-hover:bg-[#FFD700]/40 group-hover:scale-110 transition-all duration-300 backdrop-blur-sm">
                   <Map className="w-6 h-6 text-[#FFD700]" />
                 </div>
                 <div>
@@ -247,7 +223,7 @@ export const Contact: React.FC = () => {
             </div>
 
             {/* Response time info */}
-            <div className="mt-8 p-4 rounded-lg bg-slate-700/50 border border-slate-600/50">
+            <div className="mt-8 p-4 rounded-xl bg-slate-700/40 backdrop-blur-lg border border-slate-600/40 hover:border-[#6C63FF]/30 transition-all duration-300">
               <p className="text-sm text-slate-300">
                 <span className="text-[#6C63FF] font-medium">Quick Response:</span> I typically respond within 24 hours.
               </p>
@@ -256,11 +232,10 @@ export const Contact: React.FC = () => {
 
           {/* Contact Form */}
           <form
-            ref={formRef}
             onSubmit={handleSubmit}
-            className={`space-y-6 p-8 rounded-xl card-transparent shadow-xl transition-all duration-1000 ease-out transform
+            className={`space-y-6 p-8 rounded-2xl bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 shadow-2xl transition-all duration-1000 ease-out transform hover:scale-[1.02] hover:shadow-[#2EC4B6]/20 hover:shadow-2xl
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-            style={{ transitionDelay: '400ms' }}
+            style={{ animationDelay: '400ms' }}
           >
             <div className="mb-6">
               <h3 className="text-2xl font-semibold text-white">Send a Message</h3>
@@ -278,7 +253,7 @@ export const Contact: React.FC = () => {
                 value={formState.name}
                 onChange={handleInputChange}
                 placeholder="Enter your full name"
-                className={`w-full p-4 rounded-lg bg-slate-800/50 backdrop-blur-sm border transition-all duration-300 ${
+                className={`w-full p-4 rounded-xl bg-slate-700/40 backdrop-blur-lg border transition-all duration-300 ${
                   formErrors.name 
                     ? 'border-red-500 focus:border-red-400' 
                     : 'border-slate-600/50 focus:border-[#6C63FF] hover:border-slate-500/70'
@@ -303,7 +278,7 @@ export const Contact: React.FC = () => {
                 value={formState.email}
                 onChange={handleInputChange}
                 placeholder="Enter your email address"
-                className={`w-full p-4 rounded-lg bg-slate-800/50 backdrop-blur-sm border transition-all duration-300 ${
+                className={`w-full p-4 rounded-xl bg-slate-700/40 backdrop-blur-lg border transition-all duration-300 ${
                   formErrors.email 
                     ? 'border-red-500 focus:border-red-400' 
                     : 'border-slate-600/50 focus:border-[#6C63FF] hover:border-slate-500/70'
@@ -328,7 +303,7 @@ export const Contact: React.FC = () => {
                 onChange={handleInputChange}
                 placeholder="Tell me about your project or just say hello..."
                 rows={5}
-                className={`w-full p-4 rounded-lg bg-slate-800/50 backdrop-blur-sm border transition-all duration-300 ${
+                className={`w-full p-4 rounded-xl bg-slate-700/40 backdrop-blur-lg border transition-all duration-300 ${
                   formErrors.message 
                     ? 'border-red-500 focus:border-red-400' 
                     : 'border-slate-600/50 focus:border-[#6C63FF] hover:border-slate-500/70'
@@ -345,7 +320,7 @@ export const Contact: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full p-4 rounded-lg bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] text-white font-semibold flex items-center justify-center space-x-2 hover:from-[#5A52D5] hover:to-[#26A69A] transform hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg hover:shadow-xl"
+              className="w-full p-4 rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] text-white font-semibold flex items-center justify-center space-x-2 hover:from-[#5A52D5] hover:to-[#26A69A] transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-xl hover:shadow-2xl backdrop-blur-sm"
             >
               {isSubmitting ? (
                 <>
@@ -363,7 +338,7 @@ export const Contact: React.FC = () => {
             {/* Status Messages */}
             {submitStatus.type && (
               <div
-                className={`flex items-start space-x-3 p-4 rounded-lg border transition-all duration-300 ${
+                className={`flex items-start space-x-3 p-4 rounded-xl border transition-all duration-300 backdrop-blur-lg ${
                   submitStatus.type === 'success'
                     ? 'bg-green-500/10 border-green-500/30 text-green-400'
                     : 'bg-red-500/10 border-red-500/30 text-red-400'

@@ -1,31 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { Briefcase, Calendar, MapPin } from 'lucide-react';
+import React from 'react';
+import { Briefcase, Calendar, MapPin, Award } from 'lucide-react';
+import { useScrollAnimation } from '../utils/useScrollAnimation';
 
 export const Experience: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-10');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    if (cardRef.current) observer.observe(cardRef.current);
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-      if (cardRef.current) observer.unobserve(cardRef.current);
-    };
-  }, []);
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
     <section 
@@ -41,8 +19,9 @@ export const Experience: React.FC = () => {
         </h2>
 
         <div 
-          ref={cardRef}
-          className="max-w-3xl mx-auto opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+          className={`max-w-3xl mx-auto transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
         >
           <div className="perspective-container card-hover p-8 rounded-xl shadow-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
             {/* Experience Card Top Decoration */}
@@ -80,6 +59,20 @@ export const Experience: React.FC = () => {
                   <p>
                     I deployed the application using Vercel for the frontend and Render.com for the backend.
                   </p>
+                </div>
+                
+                {/* Certificate Link */}
+                <div className="mt-4 mb-6">
+                  <a 
+                    href="https://drive.google.com/file/d/1DRmCEyK_xqKQaILls4RcqBg9it3JWzYU/view?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#6C63FF]/20 to-[#2EC4B6]/20 border border-[#6C63FF]/30 rounded-full text-sm font-medium text-white hover:from-[#6C63FF]/30 hover:to-[#2EC4B6]/30 hover:border-[#6C63FF]/50 transition-all duration-300 backdrop-blur-sm"
+                    aria-label="View MERN Stack Developer Certificate"
+                  >
+                    <Award className="w-4 h-4 text-[#FFD700]" />
+                    <span>View Certificate</span>
+                  </a>
                 </div>
                 
                 <div className="mt-6 flex flex-wrap gap-2">

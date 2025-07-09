@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { ExternalLink, Github, Info } from 'lucide-react';
+import { useScrollAnimation } from '../utils/useScrollAnimation';
 
 interface ProjectsProps {
   onProjectSelect: (project: any) => void;
 }
 
 export const Projects: React.FC<ProjectsProps> = ({ onProjectSelect }) => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLDivElement>();
   const [activeProject, setActiveProject] = useState<number | null>(null);
 
   const projects = [
@@ -185,7 +186,9 @@ Real-time collaboration features enable teams to work together on shared note co
     "Modern, responsive UI with gradient backgrounds"
   ],
   "challenges": [
-    "!",
+    "Handling real-time API data updates efficiently",
+    "Implementing responsive design for various screen sizes",
+    "Managing location permissions and GPS accuracy"
   ],
   "duration": "1 Day",
   "team": "Solo Project"
@@ -193,36 +196,6 @@ Real-time collaboration features enable teams to work together on shared note co
 
 
   ];
-
-  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-10');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    
-    projectRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-      
-      projectRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
-    };
-  }, []);
 
   const handleMouseEnter = (index: number) => {
     setActiveProject(index);
@@ -253,9 +226,10 @@ Real-time collaboration features enable teams to work together on shared note co
           {projects.map((project, index) => (
             <div
               key={index}
-              ref={(el) => (projectRefs.current[index] = el)}
-              className={`perspective-container opacity-0 translate-y-10 transition-all duration-1000 ease-out`}
-              style={{ transitionDelay: `${index * 200}ms` }}
+              className={`perspective-container transition-all duration-1000 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ animationDelay: `${index * 200}ms` }}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >

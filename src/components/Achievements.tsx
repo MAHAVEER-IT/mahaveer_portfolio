@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { Award, Trophy, AlignCenterVertical as Certificate, Target } from 'lucide-react';
+import { useScrollAnimation } from '../utils/useScrollAnimation';
 
 export const Achievements: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   const achievements = [
     {
@@ -56,27 +56,6 @@ export const Achievements: React.FC = () => {
       icon: <Certificate className="w-6 h-6 text-[#02569B]" />
     }
   ];
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   return (
     <section
@@ -170,31 +149,6 @@ export const Achievements: React.FC = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Achievement Summary */}
-        <div className="mt-16">
-          <div className="professional-card p-8 text-center">
-            <h3 className="text-2xl font-semibold mb-8 text-white">Recognition Summary</h3>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#FFD700] mb-2">4</div>
-                <p className="text-slate-300">Competition Awards</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#2EC4B6] mb-2">3</div>
-                <p className="text-slate-300">Certifications</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#6C63FF] mb-2">2</div>
-                <p className="text-slate-300">Hackathon Wins</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#FF6B6B] mb-2">1</div>
-                <p className="text-slate-300">Project Expo Win</p>
               </div>
             </div>
           </div>
