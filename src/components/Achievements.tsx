@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Award, Trophy, Certificate, Target } from 'lucide-react';
+import { Award, Trophy, AlignCenterVertical as Certificate, Target } from 'lucide-react';
 
 export const Achievements: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
