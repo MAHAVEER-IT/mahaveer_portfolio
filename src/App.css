@@ -46,12 +46,10 @@
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #6C63FF, #2EC4B6, #FFD700);
-  background-size: 200% auto;
+  background: linear-gradient(135deg, #6C63FF, #2EC4B6);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradientText 8s linear infinite;
 }
 
 .section-padding {
@@ -231,6 +229,15 @@ html {
 /* Remove any remaining butterfly-related styles */
 .butterfly-layer,
 .butterfly-container,
-canvas {
+canvas,
+.animate-pulse {
   display: none !important;
+}
+
+/* Static professional styles */
+.static-gradient {
+  background: linear-gradient(135deg, #6C63FF, #2EC4B6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

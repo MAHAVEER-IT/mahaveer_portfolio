@@ -45,7 +45,7 @@ export const Home: React.FC = () => {
             ref={nameRef}
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 opacity-0 translate-y-10 transition-all duration-1000 ease-out"
           >
-            <span className="gradient-text">Mahaveer K</span>
+            <span className="static-gradient">Mahaveer K</span>
           </h1>
           
           {/* Professional Title */}
@@ -129,7 +129,7 @@ export const Home: React.FC = () => {
           <div className="mt-12 flex justify-center">
             <div className="glass-effect-light px-6 py-3 rounded-full">
               <p className="text-sm text-slate-300">
-                <span className="inline-block w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                <span className="inline-block w-2 h-2 bg-green-400 rounded-full mr-2"></span>
                 Available for opportunities
               </p>
             </div>
