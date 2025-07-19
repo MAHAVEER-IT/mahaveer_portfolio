@@ -50,14 +50,14 @@ export const Experience: React.FC = () => {
                 
                 <div className="space-y-3 text-base">
                   <p>
-                    During my MERN stack internship at Better Tomorrow, I developed NextStop, a travel management web application.
+                    During my MERN stack internship at Better Tomorrow, I developed AI NoteMate, an intelligent note-taking web application.
                   </p>
                   <p>
-                    The application includes separate pages for administrators to manage listings and bookings, as well as for users to explore
-                    destinations and track their trips.
+                    The application features AI-powered note summarization where AI gives schedule along with time if user want they can edit also and they can save.
+                    Users can create, organize, and manage their schedules with AI assistance for better productivity.
                   </p>
                   <p>
-                    I deployed the application using Vercel for the frontend and Render.com for the backend.
+                    I integrated OpenAI APIs for intelligent features and deployed the application using Vercel for the frontend and Render.com for the backend.
                   </p>
                 </div>
                 
@@ -76,7 +76,7 @@ export const Experience: React.FC = () => {
                 </div>
                 
                 <div className="mt-6 flex flex-wrap gap-2">
-                  {['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Vercel', 'Render'].map((tech, index) => (
+                  {['React', 'Node.js', 'Express', 'MongoDB', 'OpenAI API', 'JWT', 'Vercel', 'Render'].map((tech, index) => (
                     <span 
                       key={index}
                       className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm font-medium"

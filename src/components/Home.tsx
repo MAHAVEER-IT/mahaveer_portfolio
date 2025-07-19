@@ -52,7 +52,7 @@ export const Home: React.FC = () => {
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#2EC4B6]/20 to-[#2EC4B6]/10 border border-[#2EC4B6]/30 rounded-full backdrop-blur-sm">
               <Globe className="w-4 h-4 text-[#2EC4B6]" />
-              <span className="text-sm font-medium text-white">React</span>
+              <span className="text-sm font-medium text-white">Next.js</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FFD700]/20 to-[#FFD700]/10 border border-[#FFD700]/30 rounded-full backdrop-blur-sm">
               <Code className="w-4 h-4 text-[#FFD700]" />

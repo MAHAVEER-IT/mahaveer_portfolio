@@ -114,7 +114,7 @@ export const About: React.FC = () => {
             
             <div className="absolute -top-4 -right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-400 transform translate-y-2 group-hover:translate-y-0">
               <div className="bg-[#2EC4B6]/90 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md shadow-lg animate-bounce-tag-2">
-                React
+                Next.js
               </div>
             </div>
             
