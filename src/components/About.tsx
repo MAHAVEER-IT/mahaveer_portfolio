@@ -1,5 +1,5 @@
 import React from 'react';
-import MyImage from '../../public/me.png'
+import MyImage from '/me.png'
 import { GraduationCap, User, Phone, Mail, MapPin, Calendar } from 'lucide-react';
 import { useScrollAnimation } from '../utils/useScrollAnimation';
 

@@ -11,6 +11,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onProjectSelect }) => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
 
   const projects = [
+
     {
       title: 'Bank Insight',
       description: 'An all-in-one banking app that offers features such as balance check, mini statements, ATM blocking, customer support, loan calculators, nearby ATM/bank locator, currency converter, and expense tracker.',
@@ -75,7 +76,7 @@ The vaccination alert system uses a smart scheduling algorithm that considers fa
 Additional features include weather forecasting integration, crop planning tools based on soil conditions and climate data, and a community forum where farmers can share experiences and learn from each other.`,
       liveLink: 'https://www.canva.com/design/DAGrAd4CWMI/JwQ19kPFiNsjxFi0YFJ9_A/watch?utm_content=DAGrAd4CWMI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h0409f5f144',
       codeLink: 'https://github.com/MAHAVEER-IT/Sow-Grow.git',
-      image:'https://res.cloudinary.com/dkn3it92b/image/upload/v1751315583/mhef6jixumwfyltnjukn.png',
+      image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1751315583/mhef6jixumwfyltnjukn.png',
       technologies: ['Flutter', 'Dart', 'Firebase', 'Open Street Map', 'Gemini AI'],
       features: [
         'AI-powered disease detection for crops and livestock with Gemini-AI(API)',
@@ -133,67 +134,108 @@ Real-time collaboration features enable teams to work together on shared note co
       team: 'Solo Project'
     },
     {
-  "title": "Blog App",
-  "description": "A simple blog app demonstrating clean architecture and BLoC pattern in Flutter.",
-  "longDescription": "This blog app was built primarily to understand and implement the clean architecture and BLoC pattern in Flutter. It allows users to create a blog by uploading an image, adding a title and content, and then publishing it. The data is stored in Firebase Firestore. Other users can like and save posts. Authentication is handled via Firebase, and a one-time login system is implemented using Hive local database.",
-  "liveLink": 'https://drive.google.com/drive/folders/1gO-ueeL_Biz7fTrmLjLf0Ol9jJhG76Io?usp=sharing',
-  "codeLink": 'https://github.com/MAHAVEER-IT/Blog_Flutter.git',
-  "image": 'https://res.cloudinary.com/dkn3it92b/image/upload/v1751316254/wiujsd62cscl3wwvq2c2.png',
-  "technologies": [
-    "Flutter",
-    "Firebase Firestore",
-    "Firebase Authentication",
-    "Hive",
-    "BLoC Pattern",
-    "Clean Architecture"
-  ],
-  "features": [
-    "Create and publish blog posts with image, title, and content",
-    "Store blogs in Firebase Firestore",
-    "User authentication with Firebase Auth",
-    "One-time login using Hive local DB",
-    "Like blog posts",
-    "Save blog posts for later"
-  ],
-  "challenges": [
-    "Implementing clean architecture effectively",
-    "Integrating BLoC with real-time Firebase updates",
-    "Handling image upload and preview",
-    "Managing local storage and one-time login with Hive"
-  ],
-  "duration": "2 weeks",
-  "team": "Solo Project"
-},
+      "title": "Blog App",
+      "description": "A simple blog app demonstrating clean architecture and BLoC pattern in Flutter.",
+      "longDescription": "This blog app was built primarily to understand and implement the clean architecture and BLoC pattern in Flutter. It allows users to create a blog by uploading an image, adding a title and content, and then publishing it. The data is stored in Firebase Firestore. Other users can like and save posts. Authentication is handled via Firebase, and a one-time login system is implemented using Hive local database.",
+      "liveLink": 'https://drive.google.com/drive/folders/1gO-ueeL_Biz7fTrmLjLf0Ol9jJhG76Io?usp=sharing',
+      "codeLink": 'https://github.com/MAHAVEER-IT/Blog_Flutter.git',
+      "image": 'https://res.cloudinary.com/dkn3it92b/image/upload/v1751316254/wiujsd62cscl3wwvq2c2.png',
+      "technologies": [
+        "Flutter",
+        "Firebase Firestore",
+        "Firebase Authentication",
+        "Hive",
+        "BLoC Pattern",
+        "Clean Architecture"
+      ],
+      "features": [
+        "Create and publish blog posts with image, title, and content",
+        "Store blogs in Firebase Firestore",
+        "User authentication with Firebase Auth",
+        "One-time login using Hive local DB",
+        "Like blog posts",
+        "Save blog posts for later"
+      ],
+      "challenges": [
+        "Implementing clean architecture effectively",
+        "Integrating BLoC with real-time Firebase updates",
+        "Handling image upload and preview",
+        "Managing local storage and one-time login with Hive"
+      ],
+      "duration": "2 weeks",
+      "team": "Solo Project"
+    },
     {
-  "title": "Flutter Weather App",
-  "description": "A real-time weather app built using Flutter and OpenWeather API, supporting both location and city search.",
-  "longDescription": "This Flutter Weather App offers real-time weather updates by fetching data from the OpenWeather API. It includes features like temperature, humidity, wind speed, and current weather conditions with both location-based and city-name-based weather search. The UI is responsive and modern, designed to work across various screen sizes with gradient backgrounds and weather icons.",
-  "liveLink": "https://drive.google.com/drive/folders/1Xr5kTQBnjNTxuM7GS98WjtjeauRPgX_3?usp=drive_link",
-  "codeLink": "https://github.com/MAHAVEER-IT/Weather_app.git",
-  "image": "https://res.cloudinary.com/dkn3it92b/image/upload/v1751382671/gy96ggt37wcm0rugagkf.png",
-  "technologies": [
-    "Flutter",
-    "Dart",
-    "OpenWeather API"
-  ],
-  "features": [
-    "City-based weather search",
-    "Location-based weather updates",
-    "Current temperature and weather condition display",
-    "Min/Max temperature info",
-    "Humidity and wind speed monitoring",
-    "Local time and date display",
-    "Modern, responsive UI with gradient backgrounds"
-  ],
-  "challenges": [
-    "Handling real-time API data updates efficiently",
-    "Implementing responsive design for various screen sizes",
-    "Managing location permissions and GPS accuracy"
-  ],
-  "duration": "1 Day",
-  "team": "Solo Project"
-},
+      "title": "Flutter Weather App",
+      "description": "A real-time weather app built using Flutter and OpenWeather API, supporting both location and city search.",
+      "longDescription": "This Flutter Weather App offers real-time weather updates by fetching data from the OpenWeather API. It includes features like temperature, humidity, wind speed, and current weather conditions with both location-based and city-name-based weather search. The UI is responsive and modern, designed to work across various screen sizes with gradient backgrounds and weather icons.",
+      "liveLink": "https://drive.google.com/drive/folders/1Xr5kTQBnjNTxuM7GS98WjtjeauRPgX_3?usp=drive_link",
+      "codeLink": "https://github.com/MAHAVEER-IT/Weather_app.git",
+      "image": "https://res.cloudinary.com/dkn3it92b/image/upload/v1751382671/gy96ggt37wcm0rugagkf.png",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "OpenWeather API"
+      ],
+      "features": [
+        "City-based weather search",
+        "Location-based weather updates",
+        "Current temperature and weather condition display",
+        "Min/Max temperature info",
+        "Humidity and wind speed monitoring",
+        "Local time and date display",
+        "Modern, responsive UI with gradient backgrounds"
+      ],
+      "challenges": [
+        "Handling real-time API data updates efficiently",
+        "Implementing responsive design for various screen sizes",
+        "Managing location permissions and GPS accuracy"
+      ],
+      "duration": "1 Day",
+      "team": "Solo Project"
+    },
+    {
+      title: 'MyTravelLog',
+      description: 'A full-stack Next.js travel blog application that allows users to explore destinations, search locations, and engage with content while providing admin capabilities for content management.',
+      longDescription: `MyTravelLog is a comprehensive travel blog platform built with Next.js that enables users to discover and explore travel destinations worldwide. The application features both user-facing and administrative functionalities.
 
+Key User Features:
+- Interactive home page showcasing featured destinations with a dynamic banner carousel
+- Advanced search functionality allowing users to find places by name, nearby locations, or labels
+- Detailed destination pages with image carousels, comprehensive descriptions, location information, best times to visit, and interactive comment sections
+- Authentication via GitHub OAuth that enables users to leave comments and engage with content
+
+Admin Capabilities:
+- Secure admin dashboard accessible only to authorized administrators
+- Complete content management system for adding new travel destinations with multiple images
+- Ability to delete or modify existing place information
+- Direct image upload to Cloudinary from within the admin interface
+
+The application architecture leverages Next.js App Router for efficient routing, server components for improved performance, and MongoDB for flexible data storage. The responsive design ensures optimal viewing across all device sizes, while the TailwindCSS implementation provides a modern and consistent UI.`,
+      liveLink: 'https://my-travel-log-sooty.vercel.app/',
+      codeLink: 'https://github.com/MAHAVEER-IT/MyTravelLog.git',
+      image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1753595766/wqpj5fehcsyvymrl74ou.png',
+      technologies: ['Next.js', 'React', 'MongoDB', 'Mongoose', 'TailwindCSS', 'NextAuth.js', 'Cloudinary'],
+      features: [
+        'Server-side rendering with Next.js App Router',
+        'GitHub OAuth authentication for user comments',
+        'Admin dashboard with content management',
+        'Image carousel for destination photos',
+        'Advanced search functionality (name, location, labels)',
+        'Interactive comment section for registered users',
+        'Responsive design for all device sizes',
+        'Direct image upload to Cloudinary',
+        'Location information with best time to visit details'
+      ],
+      challenges: [
+        'Implementing efficient server and client components in Next.js',
+        'Managing authentication and authorization for different user roles',
+        'Optimizing image loading and management for performance',
+        'Creating a responsive search system across multiple data points'
+      ],
+      duration: '1 week',
+      team: 'Solo Project'
+    },
 
   ];
 
@@ -226,14 +268,13 @@ Real-time collaboration features enable teams to work together on shared note co
           {projects.map((project, index) => (
             <div
               key={index}
-              className={`perspective-container transition-all duration-1000 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ animationDelay: `${index * 200}ms` }}
+              className={`perspective-container transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+              data-delay={index * 200}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
-              <div 
+              <div
                 className={`card-hover rounded-xl overflow-hidden shadow-xl transition-all duration-500 
                            ${activeProject === index ? 'scale-[1.02]' : 'scale-100'}`}
               >
@@ -245,17 +286,17 @@ Real-time collaboration features enable teams to work together on shared note co
                     className="w-full h-full object-cover transition-all duration-700 ease-in-out transform hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  
+
                   {/* Project Title Overlay */}
                   <div className="absolute bottom-0 left-0 w-full p-4 text-white">
                     <h3 className="text-xl font-bold">{project.title}</h3>
                   </div>
                 </div>
-                
+
                 {/* Project Content */}
                 <div className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
                   <p className="text-sm mb-4 line-clamp-3">{project.description}</p>
-                  
+
                   {/* Technologies */}
                   <div className="mb-4 flex flex-wrap gap-2">
                     {project.technologies.slice(0, 3).map((tech, techIndex) => (
@@ -272,7 +313,7 @@ Real-time collaboration features enable teams to work together on shared note co
                       </span>
                     )}
                   </div>
-                  
+
                   {/* Project Links */}
                   <div className="flex justify-between items-center">
                     <a

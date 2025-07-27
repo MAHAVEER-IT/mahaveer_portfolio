@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDownCircle, Github, Linkedin, ExternalLink, Mail, Code, Smartphone, Globe } from 'lucide-react';
+import { ArrowDownCircle, Github, Linkedin, ExternalLink, Mail, Code, Smartphone, Globe, FileText } from 'lucide-react';
 import { useScrollAnimation } from '../utils/useScrollAnimation';
 
 export const Home: React.FC = () => {
@@ -66,10 +66,10 @@ export const Home: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
               <a 
                 href="#projects" 
-                className="inline-flex items-center gap-3 py-4 px-8 bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] rounded-full font-semibold text-lg text-white hover:shadow-lg transition-all duration-300"
+                className="inline-flex items-center gap-3 py-3 px-6 bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] rounded-full font-semibold text-base text-white hover:shadow-lg transition-all duration-300"
                 aria-label="View my projects"
               >
                 <ExternalLink className="w-5 h-5" />
@@ -77,8 +77,19 @@ export const Home: React.FC = () => {
               </a>
               
               <a 
+                href="https://drive.google.com/file/d/15OKzAONtc8IMWyx0yEz4Tf8a84qYtK3T/view?usp=sharing" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 py-3 px-6 bg-gradient-to-r from-[#FFD700]/90 to-[#F97316]/90 rounded-full font-semibold text-base text-white hover:shadow-lg hover:from-[#FFD700] hover:to-[#F97316] transition-all duration-300"
+                aria-label="Download my resume"
+              >
+                <FileText className="w-5 h-5" />
+                <span>View Resume</span>
+              </a>
+              
+              <a 
                 href="#contact" 
-                className="inline-flex items-center gap-3 py-4 px-8 border-2 border-[#6C63FF] text-[#6C63FF] rounded-full font-semibold text-lg hover:bg-[#6C63FF] hover:text-white transition-all duration-300"
+                className="inline-flex items-center gap-3 py-3 px-6 border-2 border-[#6C63FF] text-[#6C63FF] rounded-full font-semibold text-base hover:bg-[#6C63FF] hover:text-white transition-all duration-300"
                 aria-label="Get in touch"
               >
                 <Mail className="w-5 h-5" />
