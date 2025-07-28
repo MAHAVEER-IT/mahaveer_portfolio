@@ -11,59 +11,6 @@ export const Projects: React.FC<ProjectsProps> = ({ onProjectSelect }) => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
 
   const projects = [
-
-    {
-      title: 'Bank Insight',
-      description: 'An all-in-one banking app that offers features such as balance check, mini statements, ATM blocking, customer support, loan calculators, nearby ATM/bank locator, currency converter, and expense tracker.',
-      longDescription: `Bank Inishit is a mobile application developed to streamline access to essential banking services from multiple Indian banks within a single platform. Built using Flutter for the frontend and Firebase for authentication, the app focuses on usability, security, and practical daily banking needs.
-
-Key Features:
-Secure Authentication:
-User registration and login are handled via Firebase, including email verification to ensure account security.
-
-Multi-bank Integration:
-Supports four major banks: SBI, Indian Bank, Union Bank, and KVB. For each bank, users can:
-
-Check account balance and view mini statements.
-
-Block ATM cards and contact customer care directly through the bank’s toll-free number.
-
-Locate nearby ATMs and branches via Google Maps integration.
-
-Loan Calculators:
-Dedicated calculators for personal and gold loans, customized to reflect each bank’s specific schemes (based on static data for the year 2024).
-
-Bank Holiday Calendar:
-Displays each bank's holiday schedule to help users plan their visits (static data for 2024).
-
-Additional Tools:
-Includes a real-time currency converter using an external API, a simple expense tracker to monitor spending, and an IFSC code lookup to retrieve bank branch details.
-
-Note: As this is the first version of the project, some data (like holiday calendars and loan schemes) is static.`,
-      liveLink: 'https://drive.google.com/drive/folders/13j3pnF7rVRWrvD1OvyUghWhdSVP8HYQR?usp=drive_link',
-      codeLink: 'https://github.com/MAHAVEER-IT/bank_inish.git',
-      image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1751300070/ajzfnv0p6bweq3amnlbi.png',
-      technologies: ['Flutter', 'Firebase', 'Currency Converter API', 'Google Maps API'],
-      features: [
-        'Secure login and signup with email verification using Firebase',
-        'Support for SBI, Indian Bank, Union Bank, and KVB',
-        'Balance check and mini statement for each bank via direct dail',
-        'ATM card block and customer care via direct dial',
-        'Nearby ATM and branch locator with Google Maps integration',
-        'Personal loan and gold loan calculators (static data)',
-        'Bank holiday calendar for each bank (static data)',
-        'Real-time currency converter with external API',
-        'Simple expense tracke',
-        'IFSC code lookup for bank branch details'
-      ],
-      challenges: [
-        'Implementing secure authentication while maintaining user-friendly experience',
-        'Integrating multiple third-party APIs for real-time data',
-        'Designing an intuitive UI that works across different screen sizes',
-      ],
-      duration: '1 months',
-      team: 'Solo Project'
-    },
     {
       title: 'Sow&Grow',
       description: 'Developed Sow&Grow, an innovative agriculture application designed to help rural farmers monitor diseases, communicate with veterinarians, and receive vaccination alerts.',
@@ -131,6 +78,100 @@ Real-time collaboration features enable teams to work together on shared note co
         'Balancing feature richness with application performance'
       ],
       duration: '3 Weeks',
+      team: 'Solo Project'
+    },
+    {
+      title: 'Visitor Parking Management System',
+      description: 'A modern parking management solution built with Next.js that enables users to register vehicles, book parking slots, and manage their profile information with Google authentication.',
+      longDescription: `The Visitor Parking Management System is a comprehensive web application designed to streamline the parking management process. Built with Next.js 15 and React 19, it provides an efficient solution for users to register vehicles, book parking slots, and manage their profile information.
+
+Key Features:
+- Authentication System: Seamless Google Sign-in integration using Firebase Authentication with user profile management and persistence.
+- Vehicle Registration System: Register vehicles with comprehensive details including brand, model, license plate (with validation), and vehicle type.
+- Parking Management: Book different slot types (Premium, Standard, Economy) with date/time selection, view active bookings, and track booking history.
+- User Profile Management: View and edit personal information, booking history, and account management features.
+
+Optimization Techniques:
+The application leverages several optimization strategies including React Hook Form for efficient form handling with built-in validation, properly structured Firebase queries for efficient data fetching, Next.js App Router for optimized page routing, and Tailwind CSS for reduced CSS bundle size.
+
+Authentication Flow:
+The system uses Firebase's Google Authentication with additional user data stored in Firestore. Upon successful sign-in, user information and activity timestamps are stored in the database for profile management and tracking.
+
+Form Handling:
+The application uses react-hook-form for optimized form handling in the vehicle registration flow, providing reduced re-renders, built-in validation with custom error messages, efficient form state management, and immediate user feedback. Comprehensive validation rules ensure data integrity before submission.`,
+      liveLink: 'https://visitor-parking-tracker.vercel.app/',
+      codeLink: 'https://github.com/MAHAVEER-IT/visitor-parking-tracker.git',
+      image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1753719159/dzjmgglyft3hdqwnecwq.png',
+      technologies: ['Next.js 15', 'Firebase', 'Tailwind CSS', 'React Hook Form'],
+      features: [
+        'Google Sign-in authentication',
+        'Vehicle registration with validation',
+        'Parking slot booking system',
+        'Multiple slot types (Premium, Standard, Economy)',
+        'User profile management',
+        'Booking history tracking',
+        'Optimized form handling with react-hook-form',
+        'Responsive design for all device sizes'
+      ],
+      challenges: [
+        'Implementing efficient Firebase data structure',
+        'Optimizing form validations for better user experience',
+        'Managing complex state between booking and vehicle registration',
+        'Balancing security with usability in authentication flow'
+      ],
+      duration: '1 week',
+      team: 'Solo Project'
+    },
+    {
+      title: 'Bank Insight',
+      description: 'An all-in-one banking app that offers features such as balance check, mini statements, ATM blocking, customer support, loan calculators, nearby ATM/bank locator, currency converter, and expense tracker.',
+      longDescription: `Bank Inishit is a mobile application developed to streamline access to essential banking services from multiple Indian banks within a single platform. Built using Flutter for the frontend and Firebase for authentication, the app focuses on usability, security, and practical daily banking needs.
+
+Key Features:
+Secure Authentication:
+User registration and login are handled via Firebase, including email verification to ensure account security.
+
+Multi-bank Integration:
+Supports four major banks: SBI, Indian Bank, Union Bank, and KVB. For each bank, users can:
+
+Check account balance and view mini statements.
+
+Block ATM cards and contact customer care directly through the bank’s toll-free number.
+
+Locate nearby ATMs and branches via Google Maps integration.
+
+Loan Calculators:
+Dedicated calculators for personal and gold loans, customized to reflect each bank’s specific schemes (based on static data for the year 2024).
+
+Bank Holiday Calendar:
+Displays each bank's holiday schedule to help users plan their visits (static data for 2024).
+
+Additional Tools:
+Includes a real-time currency converter using an external API, a simple expense tracker to monitor spending, and an IFSC code lookup to retrieve bank branch details.
+
+Note: As this is the first version of the project, some data (like holiday calendars and loan schemes) is static.`,
+      liveLink: 'https://drive.google.com/drive/folders/13j3pnF7rVRWrvD1OvyUghWhdSVP8HYQR?usp=drive_link',
+      codeLink: 'https://github.com/MAHAVEER-IT/bank_inish.git',
+      image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1751300070/ajzfnv0p6bweq3amnlbi.png',
+      technologies: ['Flutter', 'Firebase', 'Currency Converter API', 'Google Maps API'],
+      features: [
+        'Secure login and signup with email verification using Firebase',
+        'Support for SBI, Indian Bank, Union Bank, and KVB',
+        'Balance check and mini statement for each bank via direct dail',
+        'ATM card block and customer care via direct dial',
+        'Nearby ATM and branch locator with Google Maps integration',
+        'Personal loan and gold loan calculators (static data)',
+        'Bank holiday calendar for each bank (static data)',
+        'Real-time currency converter with external API',
+        'Simple expense tracke',
+        'IFSC code lookup for bank branch details'
+      ],
+      challenges: [
+        'Implementing secure authentication while maintaining user-friendly experience',
+        'Integrating multiple third-party APIs for real-time data',
+        'Designing an intuitive UI that works across different screen sizes',
+      ],
+      duration: '1 months',
       team: 'Solo Project'
     },
     {
