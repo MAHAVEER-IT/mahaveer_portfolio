@@ -10,6 +10,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { TopologyBackground } from './components/TopologyBackground';
 import { ProjectDetail } from './components/ProjectDetail';
+import { CursorStarsCanvas } from './components/CursorStarsCanvas';
 import { ThemeProvider } from './contexts/ThemeContext';
 import './App.css';
 
@@ -26,6 +27,9 @@ function App() {
 
   return (
     <ThemeProvider>
+      {/* Cursor Stars Effect - active on all pages */}
+      <CursorStarsCanvas />
+      
       {selectedProject ? (
         // Show ONLY the project details page
         <ProjectDetail 

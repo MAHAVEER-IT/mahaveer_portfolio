@@ -488,3 +488,95 @@ html {
   outline-offset: 2px;
   box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.1);
 }
+
+/* Clean background patterns */
+.bg-minimal-dots {
+  background-image: 
+    radial-gradient(circle at 25% 25%, #6C63FF 1.5px, transparent 1.5px),
+    radial-gradient(circle at 75% 75%, #2EC4B6 1px, transparent 1px);
+  background-size: 160px 160px, 140px 140px;
+}
+
+.bg-subtle-grid {
+  background-image:
+    linear-gradient(90deg, #6C63FF 1px, transparent 1px),
+    linear-gradient(180deg, #6C63FF 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Cursor stars effect */
+.cursor-stars-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.cursor-stars-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-star {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.1s linear;
+}
+
+.cursor-star-purple {
+  background-color: #6C63FF;
+  box-shadow: 0 0 6px #6C63FF;
+}
+
+.cursor-star-teal {
+  background-color: #2EC4B6;
+  box-shadow: 0 0 6px #2EC4B6;
+}
+
+.cursor-star-gold {
+  background-color: #FFD700;
+  box-shadow: 0 0 6px #FFD700;
+}
+
+.cursor-star-white {
+  background-color: #ffffff;
+  box-shadow: 0 0 6px #ffffff;
+}
+
+/* Star sizes */
+.star-size-1 { width: 1px; height: 1px; }
+.star-size-2 { width: 2px; height: 2px; }
+.star-size-3 { width: 3px; height: 3px; }
+.star-size-4 { width: 4px; height: 4px; }
+
+/* Star opacity levels */
+.star-opacity-10 { opacity: 0.1; }
+.star-opacity-20 { opacity: 0.2; }
+.star-opacity-30 { opacity: 0.3; }
+.star-opacity-40 { opacity: 0.4; }
+.star-opacity-50 { opacity: 0.5; }
+.star-opacity-60 { opacity: 0.6; }
+.star-opacity-70 { opacity: 0.7; }
+.star-opacity-80 { opacity: 0.8; }
+.star-opacity-90 { opacity: 0.9; }
+.star-opacity-100 { opacity: 1; }
+
+/* Star scale transforms */
+.star-scale-100 { transform: scale(1); }
+.star-scale-110 { transform: scale(1.1); }
+.star-scale-120 { transform: scale(1.2); }
+.star-scale-130 { transform: scale(1.3); }
+.star-scale-140 { transform: scale(1.4); }
+.star-scale-150 { transform: scale(1.5); }
+.star-scale-160 { transform: scale(1.6); }
+.star-scale-170 { transform: scale(1.7); }
+.star-scale-180 { transform: scale(1.8); }
+.star-scale-190 { transform: scale(1.9); }
+.star-scale-200 { transform: scale(2); }

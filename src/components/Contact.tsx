@@ -39,11 +39,11 @@ export const Contact: React.FC = () => {
                 <div className="p-3 rounded-full bg-[#6C63FF]/20 border border-[#6C63FF]/30 group-hover:bg-[#6C63FF]/40 group-hover:scale-110 transition-all duration-300 backdrop-blur-sm">
                   <Mail className="w-6 h-6 text-[#6C63FF]" />
                 </div>
-                <div>
+                <div className="overflow-hidden">
                   <p className="text-sm text-slate-400 mb-1">Email</p>
                   <a 
                     href="mailto:mahaveer.k2023it@sece.ac.in" 
-                    className="text-white hover:text-[#6C63FF] transition-colors duration-300 font-medium"
+                    className="text-white hover:text-[#6C63FF] transition-colors duration-300 font-medium text-sm sm:text-base break-all"
                   >
                     mahaveer.k2023it@sece.ac.in
                   </a>
@@ -54,11 +54,11 @@ export const Contact: React.FC = () => {
                 <div className="p-3 rounded-full bg-[#2EC4B6]/20 border border-[#2EC4B6]/30 group-hover:bg-[#2EC4B6]/40 group-hover:scale-110 transition-all duration-300 backdrop-blur-sm">
                   <Phone className="w-6 h-6 text-[#2EC4B6]" />
                 </div>
-                <div>
+                <div className="overflow-hidden">
                   <p className="text-sm text-slate-400 mb-1">Phone</p>
                   <a 
                     href="tel:+916374827794" 
-                    className="text-white hover:text-[#2EC4B6] transition-colors duration-300 font-medium"
+                    className="text-white hover:text-[#2EC4B6] transition-colors duration-300 font-medium text-sm sm:text-base"
                   >
                     +91 6374827794
                   </a>
@@ -69,9 +69,9 @@ export const Contact: React.FC = () => {
                 <div className="p-3 rounded-full bg-[#FFD700]/20 border border-[#FFD700]/30 group-hover:bg-[#FFD700]/40 group-hover:scale-110 transition-all duration-300 backdrop-blur-sm">
                   <Map className="w-6 h-6 text-[#FFD700]" />
                 </div>
-                <div>
+                <div className="overflow-hidden">
                   <p className="text-sm text-slate-400 mb-1">Location</p>
-                  <span className="text-white font-medium">Tamil Nadu, India</span>
+                  <span className="text-white font-medium text-sm sm:text-base">Tamil Nadu, India</span>
                 </div>
               </div>
             </div>

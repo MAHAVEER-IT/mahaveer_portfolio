@@ -141,15 +141,13 @@ export const About: React.FC = () => {
               
               <div className="space-y-6 mb-8">
                 <p className="text-lg leading-relaxed text-slate-300">
-                  I'm a passionate <strong className="text-white">Flutter & Full Stack Developer</strong> with a focus on creating
-                  impactful digital solutions. Currently pursuing my B.Tech in Information Technology, 
-                  I specialize in mobile app development, web applications, and modern software engineering practices.
+                  I'm a <strong className="text-white">B.Tech Information Technology</strong> student passionate about creating impactful digital solutions. I'm actively building my expertise in <strong className="text-white">full-stack web development</strong>, working with technologies like <strong className="text-white">React and Next.js</strong> for client-side development, and <strong className="text-white">Node.js with Express</strong> for server-side logic. I use <strong className="text-white">MongoDB and Firebase</strong> as cloud database solutions, and my frontend foundation includes HTML5, CSS3, and JavaScript, enabling me to create responsive, user-friendly interfaces.
                 </p>
                 <p className="text-lg leading-relaxed text-slate-300">
-                  With hands-on experience in <strong className="text-white">MERN stack development</strong> and 
-                  <strong className="text-white"> Flutter mobile applications</strong>, I enjoy solving complex problems 
-                  and building user-centric solutions. I'm always eager to learn new technologies and contribute to 
-                  innovative projects.
+                  I have hands-on experience integrating APIs, managing both client-side and server-side functionalities, and delivering clean, maintainable code across dynamic web applications.
+                </p>
+                <p className="text-lg leading-relaxed text-slate-300">
+                  Alongside my web development journey, I have a strong foundation in <strong className="text-white">Flutter</strong>, where I enjoy designing and building intuitive, cross-platform mobile applications focused on real-world usability and seamless user experience.
                 </p>
               </div>
 
@@ -159,12 +157,12 @@ export const About: React.FC = () => {
                     <div className="p-2 rounded-lg bg-[#6C63FF]/20 border border-[#6C63FF]/30 group-hover:bg-[#6C63FF]/30 transition-all duration-300 mr-4">
                       <info.icon className="w-5 h-5 text-[#6C63FF]" />
                     </div>
-                    <div>
+                    <div className="overflow-hidden">
                       <p className="text-sm text-slate-400 mb-1">{info.label}</p>
                       {info.href ? (
                         <a 
                           href={info.href}
-                          className="text-white hover:text-[#6C63FF] transition-colors duration-300 font-medium"
+                          className="text-white hover:text-[#6C63FF] transition-colors duration-300 font-medium text-sm sm:text-base break-all"
                         >
                           {info.value}
                         </a>

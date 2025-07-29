@@ -24,7 +24,7 @@ Additional features include weather forecasting integration, crop planning tools
       liveLink: 'https://www.canva.com/design/DAGrAd4CWMI/JwQ19kPFiNsjxFi0YFJ9_A/watch?utm_content=DAGrAd4CWMI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h0409f5f144',
       codeLink: 'https://github.com/MAHAVEER-IT/Sow-Grow.git',
       image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1751315583/mhef6jixumwfyltnjukn.png',
-      technologies: ['Flutter', 'Dart', 'Firebase', 'Open Street Map', 'Gemini AI'],
+      technologies: ['Flutter', 'Dart', 'Node.js', 'MongoDB', 'Open Street Map', 'Gemini AI'],
       features: [
         'AI-powered disease detection for crops and livestock with Gemini-AI(API)',
         'Real-time chat with veterinarians and experts',
@@ -102,7 +102,7 @@ The application uses react-hook-form for optimized form handling in the vehicle 
       liveLink: 'https://visitor-parking-tracker.vercel.app/',
       codeLink: 'https://github.com/MAHAVEER-IT/visitor-parking-tracker.git',
       image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1753719159/dzjmgglyft3hdqwnecwq.png',
-      technologies: ['Next.js 15', 'Firebase', 'Tailwind CSS', 'React Hook Form'],
+      technologies: ['Next.js', 'Firebase', 'Tailwind CSS', 'React Hook Form'],
       features: [
         'Google Sign-in authentication',
         'Vehicle registration with validation',

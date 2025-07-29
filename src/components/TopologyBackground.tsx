@@ -18,36 +18,17 @@ export const TopologyBackground: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-[#FFD700]/8 to-[#6C63FF]/8 rounded-full blur-3xl"></div>
       </div>
       
-      {/* Professional geometric pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            radial-gradient(circle at 25% 25%, #6C63FF 2px, transparent 2px),
-            radial-gradient(circle at 75% 75%, #2EC4B6 1px, transparent 1px),
-            radial-gradient(circle at 75% 25%, #FFD700 1.5px, transparent 1.5px),
-            radial-gradient(circle at 25% 75%, #6C63FF 1px, transparent 1px)
-          `,
-          backgroundSize: '120px 120px, 80px 80px, 100px 100px, 60px 60px'
-        }}></div>
-      </div>
-      
-      {/* Subtle mesh pattern */}
+      {/* Minimal geometric accents - reduced opacity and simplified */}
       <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(90deg, #6C63FF 1px, transparent 1px),
-            linear-gradient(180deg, #6C63FF 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}></div>
+        <div className="absolute inset-0 bg-minimal-dots"></div>
       </div>
       
-      {/* Professional noise texture */}
-      <div className="absolute inset-0 opacity-[0.015]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}></div>
+      {/* Very subtle mesh pattern - reduced opacity */}
+      <div className="absolute inset-0 opacity-[0.01]">
+        <div className="absolute inset-0 bg-subtle-grid"></div>
       </div>
+      
+      {/* Removed noise texture for cleaner look */}
       
       {/* Top vignette */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-transparent to-transparent"></div>
