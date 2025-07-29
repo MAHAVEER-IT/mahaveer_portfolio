@@ -44,7 +44,7 @@ export const Skills: React.FC = () => {
   ];
 
   const codingPlatforms = [
-    { platform: 'LeetCode', problems: '40+', color: '#FFA116' },
+    { platform: 'LeetCode', problems: '90+', color: '#FFA116' },
     { platform: 'CodeChef', problems: '50+', color: '#5B4638' },
     { platform: 'SkillRack', problems: '100+', color: '#00A651' },
     { platform: 'HackerRank', problems: '100+', color: '#00EA64' }
