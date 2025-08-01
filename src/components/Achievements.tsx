@@ -1,6 +1,8 @@
 import React from 'react';
 import { Award, Trophy, AlignCenterVertical as Certificate, Target } from 'lucide-react';
 import { useScrollAnimation } from '../utils/useScrollAnimation';
+import { SectionTitle } from './SectionTitle';
+import '../Styles/Achievements.css';
 
 export const Achievements: React.FC = () => {
   const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLDivElement>();
@@ -63,9 +65,7 @@ export const Achievements: React.FC = () => {
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-center section-title">
-          Achievements & Certifications
-        </h2>
+        <SectionTitle title="Achievements & Certifications" />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Achievements */}
@@ -73,27 +73,27 @@ export const Achievements: React.FC = () => {
             className={`transition-all duration-1000 ease-out transform
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
-            <div className="professional-card p-8">
+            <div className="achievement-card p-8">
               <div className="flex items-center mb-8">
                 <Trophy className="w-8 h-8 text-[#FFD700] mr-3" />
-                <h3 className="text-2xl font-semibold text-white">Competition Achievements</h3>
+                <h3 className="text-2xl font-semibold text-black/70">Competition Achievements</h3>
               </div>
 
               <div className="space-y-6">
                 {achievements.map((achievement, index) => (
                   <div
                     key={index}
-                    className={`group p-6 rounded-xl border border-slate-600 hover:border-[#6C63FF]/50 
+                    className={`achievement-item group p-6 rounded-xl border border-slate-600 hover:border-[#6C63FF]/50 
                               transition-all duration-300 hover:bg-[#6C63FF]/5 transform hover:-translate-y-1
                               ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
                     style={{ transitionDelay: `${index * 200}ms` }}
                   >
                     <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-lg bg-gradient-to-r from-slate-700 to-slate-600 group-hover:from-[#6C63FF]/20 group-hover:to-[#2EC4B6]/20 transition-all duration-300">
+                      <div className="icon-container p-3 rounded-lg bg-gradient-to-r from-slate-700 to-slate-600 group-hover:from-[#6C63FF]/20 group-hover:to-[#2EC4B6]/20 transition-all duration-300">
                         {achievement.icon}
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-white mb-1 group-hover:text-[#6C63FF] transition-colors duration-300">
+                        <h4 className="text-lg font-semibold text-black/60 mb-1 group-hover:text-[#6C63FF] transition-colors duration-300">
                           {achievement.title}
                         </h4>
                         <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mb-3 bg-gradient-to-r ${achievement.color} text-white`}>
@@ -116,27 +116,27 @@ export const Achievements: React.FC = () => {
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: '300ms' }}
           >
-            <div className="professional-card p-8">
+            <div className="certification-card p-8">
               <div className="flex items-center mb-8">
                 <Certificate className="w-8 h-8 text-[#2EC4B6] mr-3" />
-                <h3 className="text-2xl font-semibold text-white">Professional Certifications</h3>
+                <h3 className="text-2xl font-semibold text-black/70">Professional Certifications</h3>
               </div>
 
               <div className="space-y-6">
                 {certifications.map((certification, index) => (
                   <div
                     key={index}
-                    className={`group p-6 rounded-xl border border-slate-600 hover:border-[#2EC4B6]/50 
+                    className={`certification-item group p-6 rounded-xl border border-slate-600 hover:border-[#2EC4B6]/50 
                               transition-all duration-300 hover:bg-[#2EC4B6]/5 transform hover:-translate-y-1
                               ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
                     style={{ transitionDelay: `${index * 200 + 400}ms` }}
                   >
                     <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-lg bg-gradient-to-r from-slate-700 to-slate-600 group-hover:from-[#2EC4B6]/20 group-hover:to-[#6C63FF]/20 transition-all duration-300">
+                      <div className="icon-container p-3 rounded-lg bg-gradient-to-r from-slate-700 to-slate-600 group-hover:from-[#2EC4B6]/20 group-hover:to-[#6C63FF]/20 transition-all duration-300">
                         {certification.icon}
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-white mb-1 group-hover:text-[#2EC4B6] transition-colors duration-300">
+                        <h4 className="text-lg font-semibold text-black/60 mb-1 group-hover:text-[#2EC4B6] transition-colors duration-300">
                           {certification.title}
                         </h4>
                         <p className="text-[#2EC4B6] font-medium text-sm mb-2">

@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-type Theme = 'dark';
+type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
@@ -10,19 +10,27 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('light'); // Default to light theme
 
   useEffect(() => {
+    // Apply theme to document
     const root = document.documentElement;
     root.classList.remove('theme-light', 'theme-dark');
-    root.classList.add('theme-dark');
-    document.body.classList.add('dark');
-    document.body.style.backgroundColor = '#0f172a';
-    document.body.style.color = '#f8fafc';
-  }, []);
+    root.classList.add(`theme-${theme}`);
+    
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
+      document.body.style.backgroundColor = '#0f172a';
+      document.body.style.color = '#e2e8f0';
+    } else {
+      document.body.classList.remove('dark');
+      document.body.style.backgroundColor = '#f8fafc';
+      document.body.style.color = '#334155';
+    }
+  }, [theme]);
 
   const toggleTheme = () => {
-    // No-op since we only have dark theme
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
 
   return (

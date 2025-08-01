@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const CursorStarsCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
   
   interface Star {
     x: number;
@@ -23,7 +25,10 @@ export const CursorStarsCanvas: React.FC = () => {
     if (!ctx) return;
     
     const stars: Star[] = [];
-    const colors = ['#6C63FF', '#2EC4B6', '#FFD700', '#ffffff'];
+    // Update colors based on theme
+    const colors = theme === 'light' 
+      ? ['#3b82f6', '#6366f1', '#8b5cf6', '#a855f7'] // Blue/purple for light theme
+      : ['#6C63FF', '#2EC4B6', '#FFD700', '#ffffff']; // Original colors for dark theme
     let isActive = false;
     
     // Set canvas to full screen
@@ -148,12 +153,12 @@ export const CursorStarsCanvas: React.FC = () => {
       window.removeEventListener('mousemove', activateTracking);
       cancelAnimationFrame(animationId);
     };
-  }, []);
+  }, [theme]); // Add theme dependency
   
   return (
     <canvas
       ref={canvasRef}
-      className="cursor-stars-canvas"
+      className={`fixed inset-0 z-50 pointer-events-none ${theme === 'light' ? 'mix-blend-multiply' : 'mix-blend-screen'}`}
     />
   );
 };

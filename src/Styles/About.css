@@ -1,0 +1,194 @@
+@keyframes rotate-light {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Enhanced professional card with light effect on hover */
+.professional-card-animated {
+  position: relative;
+  background: rgba(241, 245, 249, 0.7); /* Light slate background */
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(203, 213, 225, 0.5); /* Light slate border */
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .professional-card-animated {
+  background: rgba(51, 65, 85, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+/* Smooth rotating border light effect */
+.professional-card-animated::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 45deg,
+    rgba(59, 130, 246, 0.6) 90deg,
+    rgba(46, 196, 182, 0.8) 135deg,
+    rgba(255, 215, 0, 0.6) 180deg,
+    rgba(108, 99, 255, 0.8) 225deg,
+    rgba(59, 130, 246, 0.6) 270deg,
+    transparent 315deg,
+    transparent 360deg
+  );
+  border-radius: 50%;
+  animation: rotate-light 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: -2;
+  pointer-events: none; /* Ensure the pseudo-element doesn't block hover */
+}
+
+.dark .professional-card-animated::before {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 45deg,
+    rgba(108, 99, 255, 0.7) 90deg,
+    rgba(46, 196, 182, 0.8) 135deg,
+    rgba(255, 215, 0, 0.6) 180deg,
+    rgba(147, 51, 234, 0.8) 225deg,
+    rgba(108, 99, 255, 0.7) 270deg,
+    transparent 315deg,
+    transparent 360deg
+  );
+}
+
+.professional-card-animated:hover::before {
+  opacity: 1;
+}
+
+/* Inner mask to create border-only effect */
+.professional-card-animated::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: rgba(241, 245, 249, 0.95);
+  border-radius: 14px;
+  z-index: -1;
+  pointer-events: none; /* Ensure the pseudo-element doesn't block hover */
+}
+
+.dark .professional-card-animated::after {
+  background: rgba(51, 65, 85, 0.9);
+}
+
+.professional-card-animated:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dark .professional-card-animated:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Alternative smooth approach with linear gradient */
+.professional-card-gradient {
+  position: relative;
+  background: rgba(241, 245, 249, 0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .professional-card-gradient {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+.professional-card-gradient::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(59, 130, 246, 0.8),
+    rgba(46, 196, 182, 0.8),
+    rgba(255, 215, 0, 0.6),
+    rgba(108, 99, 255, 0.8),
+    rgba(147, 51, 234, 0.8),
+    rgba(59, 130, 246, 0.8)
+  );
+  background-size: 400% 400%;
+  border-radius: 50%;
+  animation: gradient-shift 3s ease infinite;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: -2;
+  pointer-events: none; /* Ensure the pseudo-element doesn't block hover */
+}
+
+.dark .professional-card-gradient::before {
+  background: linear-gradient(
+    45deg,
+    rgba(108, 99, 255, 0.8),
+    rgba(46, 196, 182, 0.8),
+    rgba(255, 215, 0, 0.6),
+    rgba(147, 51, 234, 0.8),
+    rgba(59, 130, 246, 0.8),
+    rgba(108, 99, 255, 0.8)
+  );
+}
+
+.professional-card-gradient:hover::before {
+  opacity: 1;
+}
+
+/* Inner mask to create border-only effect */
+.professional-card-gradient::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: rgba(241, 245, 249, 0.95);
+  border-radius: 14px;
+  z-index: -1;
+  pointer-events: none; /* Ensure the pseudo-element doesn't block hover */
+}
+
+.dark .professional-card-gradient::after {
+  background: rgba(51, 65, 85, 0.9);
+}
+
+.professional-card-gradient:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dark .professional-card-gradient:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}

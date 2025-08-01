@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, Info } from 'lucide-react';
 import { useScrollAnimation } from '../utils/useScrollAnimation';
+import { SectionTitle } from './SectionTitle';
+import '../Styles/ProjectCard.css';
 
 interface ProjectsProps {
   onProjectSelect: (project: any) => void;
@@ -299,11 +301,7 @@ The application architecture leverages Next.js App Router for efficient routing,
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
-          <span className="pb-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:rounded-full after:bg-gradient-to-r after:from-[#6C63FF] after:to-[#2EC4B6]">
-            Projects
-          </span>
-        </h2>
+        <SectionTitle title="Projects" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
@@ -316,11 +314,11 @@ The application architecture leverages Next.js App Router for efficient routing,
               onMouseLeave={handleMouseLeave}
             >
               <div
-                className={`card-hover rounded-xl overflow-hidden shadow-xl transition-all duration-500 
+                className={`project-card-animated card-hover rounded-xl overflow-hidden shadow-xl transition-all duration-500 
                            ${activeProject === index ? 'scale-[1.02]' : 'scale-100'}`}
               >
                 {/* Project Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-48 overflow-hidden project-image-container">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -336,20 +334,20 @@ The application architecture leverages Next.js App Router for efficient routing,
 
                 {/* Project Content */}
                 <div className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
-                  <p className="text-sm mb-4 line-clamp-3">{project.description}</p>
+                  <p className="text-sm mb-4 line-clamp-3 text-black">{project.description}</p>
 
                   {/* Technologies */}
                   <div className="mb-4 flex flex-wrap gap-2">
                     {project.technologies.slice(0, 3).map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-xs font-medium"
+                        className="tech-tag px-2 py-1 rounded-full text-xs font-medium"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-xs font-medium">
+                      <span className="tech-tag px-2 py-1 rounded-full text-xs font-medium">
                         +{project.technologies.length - 3} more
                       </span>
                     )}
@@ -359,7 +357,7 @@ The application architecture leverages Next.js App Router for efficient routing,
                   <div className="flex justify-between items-center">
                     <a
                       href={project.codeLink}
-                      className="flex items-center text-sm font-medium text-[#6C63FF] hover:underline"
+                      className="project-link flex items-center text-sm font-medium text-[#6C63FF] hover:underline"
                       aria-label={`View ${project.title} code on GitHub`}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -369,7 +367,7 @@ The application architecture leverages Next.js App Router for efficient routing,
                     </a>
                     <a
                       href={project.liveLink}
-                      className="flex items-center text-sm font-medium text-[#6C63FF] hover:underline"
+                      className="project-link flex items-center text-sm font-medium text-[#6C63FF] hover:underline"
                       aria-label={`Visit ${project.title} live website`}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -379,7 +377,7 @@ The application architecture leverages Next.js App Router for efficient routing,
                     </a>
                     <button
                       onClick={() => openProjectDetail(index)}
-                      className="flex items-center text-sm font-medium text-[#6C63FF] hover:underline focus:outline-none focus:ring-2 focus:ring-[#6C63FF] focus:ring-opacity-50 rounded px-1 py-1"
+                      className="project-link flex items-center text-sm font-medium text-[#6C63FF] hover:underline focus:outline-none focus:ring-2 focus:ring-[#6C63FF] focus:ring-opacity-50 rounded px-1 py-1"
                       aria-label={`View ${project.title} details`}
                     >
                       <Info className="w-4 h-4 mr-1" />

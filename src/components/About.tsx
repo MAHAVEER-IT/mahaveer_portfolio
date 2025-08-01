@@ -2,9 +2,13 @@ import React from 'react';
 import MyImage from '/me.png'
 import { GraduationCap, User, Phone, Mail, MapPin, Calendar } from 'lucide-react';
 import { useScrollAnimation } from '../utils/useScrollAnimation';
+import { useTheme } from '../contexts/ThemeContext';
+import { SectionTitle } from './SectionTitle';
+import '../Styles/About.css';
 
 export const About: React.FC = () => {
   const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLDivElement>();
+  const { theme } = useTheme();
 
   const education = [
     {
@@ -43,9 +47,7 @@ export const About: React.FC = () => {
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-center section-title">
-          About Me
-        </h2>
+        <SectionTitle title="About Me" />
 
         {/* Profile Section with Animations */}
         <div 
@@ -77,8 +79,10 @@ export const About: React.FC = () => {
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#6C63FF]/20 to-[#2EC4B6]/20 animate-pulse"></div>
             
             {/* Rotating Border */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#6C63FF] via-[#2EC4B6] to-[#FFD700] p-1 group-hover:p-1.5 transition-all duration-300 animate-spin-slow">
-              <div className="w-full h-full rounded-full bg-slate-800"></div>
+            <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${
+              theme === 'light' ? 'from-[#3b82f6] via-[#2EC4B6] to-[#FFD700]' : 'from-[#6C63FF] via-[#2EC4B6] to-[#FFD700]'
+            } p-1 group-hover:p-1.5 transition-all duration-300 animate-spin-slow`}>
+              <div className={`w-full h-full rounded-full ${theme === 'light' ? 'bg-slate-100' : 'bg-slate-800'}`}></div>
             </div>
             
             {/* Inner Glow Effect */}
@@ -107,19 +111,25 @@ export const About: React.FC = () => {
 
             {/* Floating Skills Tags */}
             <div className="absolute -top-6 -left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 transform translate-y-2 group-hover:translate-y-0">
-              <div className="bg-[#6C63FF]/90 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md shadow-lg animate-bounce-tag-1">
+              <div className={`backdrop-blur-sm text-xs px-2 py-1 rounded-md shadow-lg animate-bounce-tag-1 ${
+                theme === 'light' ? 'bg-[#3b82f6]/90 text-white' : 'bg-[#6C63FF]/90 text-white'
+              }`}>
                 Flutter
               </div>
             </div>
             
             <div className="absolute -top-4 -right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-400 transform translate-y-2 group-hover:translate-y-0">
-              <div className="bg-[#2EC4B6]/90 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md shadow-lg animate-bounce-tag-2">
+              <div className={`backdrop-blur-sm text-xs px-2 py-1 rounded-md shadow-lg animate-bounce-tag-2 ${
+                theme === 'light' ? 'bg-[#2EC4B6]/90 text-white' : 'bg-[#2EC4B6]/90 text-white'
+              }`}>
                 Next.js
               </div>
             </div>
             
             <div className="absolute -bottom-4 -left-6 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-600 transform translate-y-2 group-hover:translate-y-0">
-              <div className="bg-[#FFD700]/90 backdrop-blur-sm text-slate-800 text-xs px-2 py-1 rounded-md shadow-lg animate-bounce-tag-3">
+              <div className={`backdrop-blur-sm text-xs px-2 py-1 rounded-md shadow-lg animate-bounce-tag-3 ${
+                theme === 'light' ? 'bg-[#FFD700]/90 text-slate-800' : 'bg-[#FFD700]/90 text-slate-800'
+              }`}>
                 MERN
               </div>
             </div>
@@ -133,41 +143,49 @@ export const About: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="professional-card p-8">
-              <h3 className="text-2xl font-semibold mb-6 flex items-center text-white">
-                <User className="w-6 h-6 mr-3 text-[#6C63FF]" />
+            <div className="professional-card-animated p-8">
+              <h3 className={`text-2xl font-semibold mb-6 flex items-center ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
+                <User className={`w-6 h-6 mr-3 ${theme === 'light' ? 'text-[#3b82f6]' : 'text-[#6C63FF]'}`} />
                 <span>Professional Profile</span>
               </h3>
               
               <div className="space-y-6 mb-8">
-                <p className="text-lg leading-relaxed text-slate-300">
-                  I'm a <strong className="text-white">B.Tech Information Technology</strong> student passionate about creating impactful digital solutions. I'm actively building my expertise in <strong className="text-white">full-stack web development</strong>, working with technologies like <strong className="text-white">React and Next.js</strong> for client-side development, and <strong className="text-white">Node.js with Express</strong> for server-side logic. I use <strong className="text-white">MongoDB and Firebase</strong> as cloud database solutions, and my frontend foundation includes HTML5, CSS3, and JavaScript, enabling me to create responsive, user-friendly interfaces.
+                <p className={`text-lg leading-relaxed ${theme === 'light' ? 'text-slate-700' : 'text-slate-300'}`}>
+                  I'm a <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>B.Tech Information Technology</strong> student passionate about creating impactful digital solutions. I'm actively building my expertise in <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>full-stack web development</strong>, working with technologies like <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>React and Next.js</strong> for client-side development, and <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Node.js with Express</strong> for server-side logic. I use <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>MongoDB and Firebase</strong> as cloud database solutions, and my frontend foundation includes HTML5, CSS3, and JavaScript, enabling me to create responsive, user-friendly interfaces.
                 </p>
-                <p className="text-lg leading-relaxed text-slate-300">
+                <p className={`text-lg leading-relaxed ${theme === 'light' ? 'text-slate-700' : 'text-slate-300'}`}>
                   I have hands-on experience integrating APIs, managing both client-side and server-side functionalities, and delivering clean, maintainable code across dynamic web applications.
                 </p>
-                <p className="text-lg leading-relaxed text-slate-300">
-                  Alongside my web development journey, I have a strong foundation in <strong className="text-white">Flutter</strong>, where I enjoy designing and building intuitive, cross-platform mobile applications focused on real-world usability and seamless user experience.
+                <p className={`text-lg leading-relaxed ${theme === 'light' ? 'text-slate-700' : 'text-slate-300'}`}>
+                  Alongside my web development journey, I have a strong foundation in <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Flutter</strong>, where I enjoy designing and building intuitive, cross-platform mobile applications focused on real-world usability and seamless user experience.
                 </p>
               </div>
 
               <div className="space-y-4">
                 {personalInfo.map((info, index) => (
                   <div key={index} className="flex items-center group">
-                    <div className="p-2 rounded-lg bg-[#6C63FF]/20 border border-[#6C63FF]/30 group-hover:bg-[#6C63FF]/30 transition-all duration-300 mr-4">
-                      <info.icon className="w-5 h-5 text-[#6C63FF]" />
+                    <div className={`p-2 rounded-lg ${
+                      theme === 'light' 
+                        ? 'bg-[#3b82f6]/20 border border-[#3b82f6]/30 group-hover:bg-[#3b82f6]/30' 
+                        : 'bg-[#6C63FF]/20 border border-[#6C63FF]/30 group-hover:bg-[#6C63FF]/30'
+                    } transition-all duration-300 mr-4`}>
+                      <info.icon className={`w-5 h-5 ${theme === 'light' ? 'text-[#3b82f6]' : 'text-[#6C63FF]'}`} />
                     </div>
                     <div className="overflow-hidden">
-                      <p className="text-sm text-slate-400 mb-1">{info.label}</p>
+                      <p className={`text-sm ${theme === 'light' ? 'text-slate-500' : 'text-slate-400'} mb-1`}>{info.label}</p>
                       {info.href ? (
                         <a 
                           href={info.href}
-                          className="text-white hover:text-[#6C63FF] transition-colors duration-300 font-medium text-sm sm:text-base break-all"
+                          className={`${
+                            theme === 'light' 
+                              ? 'text-slate-800 hover:text-[#3b82f6]' 
+                              : 'text-white hover:text-[#6C63FF]'
+                          } transition-colors duration-300 font-medium text-sm sm:text-base break-all`}
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <span className="text-white font-medium">{info.value}</span>
+                        <span className={`${theme === 'light' ? 'text-slate-800' : 'text-white'} font-medium`}>{info.value}</span>
                       )}
                     </div>
                   </div>
@@ -182,9 +200,9 @@ export const About: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="professional-card p-8">
-              <h3 className="text-2xl font-semibold mb-6 flex items-center text-white">
-                <GraduationCap className="w-6 h-6 mr-3 text-[#6C63FF]" />
+            <div className="professional-card-gradient p-8">
+              <h3 className={`text-2xl font-semibold mb-6 flex items-center ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
+                <GraduationCap className={`w-6 h-6 mr-3 ${theme === 'light' ? 'text-[#3b82f6]' : 'text-[#6C63FF]'}`} />
                 <span>Education</span>
               </h3>
               
@@ -195,32 +213,38 @@ export const About: React.FC = () => {
                     className="relative pl-8 group"
                   >
                     {/* Timeline line */}
-                    <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#6C63FF] to-transparent opacity-30 group-hover:opacity-60 transition-opacity duration-300"></div>
+                    <div className={`absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b ${
+                      theme === 'light' ? 'from-[#3b82f6]' : 'from-[#6C63FF]'
+                    } to-transparent opacity-30 group-hover:opacity-60 transition-opacity duration-300`}></div>
                     
                     {/* Timeline dot */}
-                    <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-[#6C63FF] transform -translate-x-1/2 group-hover:scale-125 transition-transform duration-300 shadow-lg shadow-[#6C63FF]/50"></div>
+                    <div className={`absolute left-0 top-0 w-3 h-3 rounded-full ${
+                      theme === 'light' ? 'bg-[#3b82f6] shadow-[#3b82f6]/50' : 'bg-[#6C63FF] shadow-[#6C63FF]/50'
+                    } transform -translate-x-1/2 group-hover:scale-125 transition-transform duration-300 shadow-lg`}></div>
                     
                     <div className="space-y-2">
                       <div className="flex items-center justify-between flex-wrap gap-2">
-                        <h4 className="text-xl font-semibold text-white group-hover:text-[#6C63FF] transition-colors duration-300">
+                        <h4 className={`text-xl font-semibold ${
+                          theme === 'light' ? 'text-slate-900 group-hover:text-[#3b82f6]' : 'text-white group-hover:text-[#6C63FF]'
+                        } transition-colors duration-300`}>
                           {item.degree}
                         </h4>
                         <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                           item.status === 'Current' 
-                            ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
-                            : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                            ? (theme === 'light' ? 'bg-green-100 text-green-800 border border-green-300' : 'bg-green-500/20 text-green-400 border border-green-500/30')
+                            : (theme === 'light' ? 'bg-blue-100 text-blue-800 border border-blue-300' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30')
                         }`}>
                           {item.status}
                         </span>
                       </div>
                       
-                      <div className="flex items-center text-sm text-slate-400 mb-2">
+                      <div className={`flex items-center text-sm ${theme === 'light' ? 'text-slate-500' : 'text-slate-400'} mb-2`}>
                         <Calendar className="w-4 h-4 mr-2" />
                         {item.duration}
                       </div>
                       
-                      <p className="text-slate-300 font-medium">{item.institution}</p>
-                      <p className="text-sm text-slate-400">{item.details}</p>
+                      <p className={`${theme === 'light' ? 'text-slate-700' : 'text-slate-300'} font-medium`}>{item.institution}</p>
+                      <p className={`text-sm ${theme === 'light' ? 'text-slate-500' : 'text-slate-400'}`}>{item.details}</p>
                     </div>
                   </div>
                 ))}

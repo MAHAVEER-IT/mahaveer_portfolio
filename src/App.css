@@ -320,20 +320,58 @@ html {
 }
 
 /* Professional card styles */
+/* Light theme as default */
 .professional-card {
-  background: rgba(51, 65, 85, 0.6);
+  background: rgba(241, 245, 249, 0.7); /* Light slate background */
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(203, 213, 225, 0.5); /* Light slate border */
   border-radius: 16px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .professional-card:hover {
+  background: rgba(241, 245, 249, 0.9);
+  border-color: rgba(59, 130, 246, 0.4); /* Blue border on hover */
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+.professional-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0) 70%);
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.professional-card:hover::before {
+  opacity: 1;
+}
+
+/* Dark theme overrides */
+.dark .professional-card {
+  background: rgba(51, 65, 85, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.dark .professional-card:hover {
   background: rgba(51, 65, 85, 0.8);
   border-color: rgba(108, 99, 255, 0.3);
   transform: translateY(-4px);
   box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+}
+
+.dark .professional-card::before {
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, rgba(108, 99, 255, 0) 70%);
 }
 
 /* Enhanced transparent card for contact section */
@@ -354,6 +392,220 @@ html {
     0 20px 40px rgba(0, 0, 0, 0.4),
     0 0 20px rgba(108, 99, 255, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+/* Contact card with smooth continuous border light animation */
+@keyframes rotate-border-light {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.contact-card {
+  position: relative;
+  background: rgba(241, 245, 249, 0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.dark .contact-card {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+/* Smooth rotating border light effect */
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 45deg,
+    rgba(59, 130, 246, 0.6) 90deg,
+    rgba(46, 196, 182, 0.8) 135deg,
+    rgba(255, 215, 0, 0.6) 180deg,
+    rgba(108, 99, 255, 0.8) 225deg,
+    rgba(59, 130, 246, 0.6) 270deg,
+    transparent 315deg,
+    transparent 360deg
+  );
+  border-radius: 50%;
+  animation: rotate-border-light 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: -2;
+}
+
+.dark .contact-card::before {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 45deg,
+    rgba(108, 99, 255, 0.7) 90deg,
+    rgba(46, 196, 182, 0.8) 135deg,
+    rgba(255, 215, 0, 0.6) 180deg,
+    rgba(147, 51, 234, 0.8) 225deg,
+    rgba(108, 99, 255, 0.7) 270deg,
+    transparent 315deg,
+    transparent 360deg
+  );
+}
+
+.contact-card:hover::before {
+  opacity: 1;
+}
+
+/* Inner mask to create border-only effect */
+.contact-card::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: rgba(241, 245, 249, 0.95);
+  border-radius: 14px;
+  z-index: -1;
+}
+
+.dark .contact-card::after {
+  background: rgba(51, 65, 85, 0.9);
+}
+
+/* Alternative smooth approach using box-shadow */
+.contact-card-smooth {
+  position: relative;
+  background: rgba(241, 245, 249, 0.9);
+  border-radius: 16px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  z-index: 1;
+}
+
+.dark .contact-card-smooth {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+.contact-card-smooth::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    rgba(59, 130, 246, 0.8),
+    rgba(46, 196, 182, 0.8),
+    rgba(255, 215, 0, 0.6),
+    rgba(108, 99, 255, 0.8),
+    rgba(147, 51, 234, 0.8),
+    rgba(59, 130, 246, 0.8)
+  );
+  background-size: 400% 400%;
+  border-radius: 18px;
+  animation: gradient-shift 3s ease infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+
+.dark .contact-card-smooth::before {
+  background: linear-gradient(
+    45deg,
+    rgba(108, 99, 255, 0.8),
+    rgba(46, 196, 182, 0.8),
+    rgba(255, 215, 0, 0.6),
+    rgba(147, 51, 234, 0.8),
+    rgba(59, 130, 246, 0.8),
+    rgba(108, 99, 255, 0.8)
+  );
+}
+
+.contact-card-smooth:hover::before {
+  opacity: 1;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Ultra-smooth approach with multiple layers */
+.contact-card-ultra-smooth {
+  position: relative;
+  background: rgba(241, 245, 249, 0.9);
+  border-radius: 16px;
+  z-index: 1;
+}
+
+.dark .contact-card-ultra-smooth {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+.contact-card-ultra-smooth::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0deg,
+    transparent 60deg,
+    rgba(59, 130, 246, 0.4) 120deg,
+    rgba(46, 196, 182, 0.6) 180deg,
+    rgba(255, 215, 0, 0.4) 240deg,
+    rgba(108, 99, 255, 0.6) 300deg,
+    transparent 360deg
+  );
+  border-radius: 17px;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  animation: spin 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.dark .contact-card-ultra-smooth::before {
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0deg,
+    transparent 60deg,
+    rgba(108, 99, 255, 0.6) 120deg,
+    rgba(46, 196, 182, 0.6) 180deg,
+    rgba(255, 215, 0, 0.4) 240deg,
+    rgba(147, 51, 234, 0.6) 300deg,
+    transparent 360deg
+  );
+}
+
+.contact-card-ultra-smooth:hover::before {
+  opacity: 1;
+}
+
+@keyframes spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }
 
 /* Professional particle system */

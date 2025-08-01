@@ -1,9 +1,11 @@
 import React from 'react';
 import { ArrowDownCircle, Github, Linkedin, ExternalLink, Mail, Code, Smartphone, Globe, FileText } from 'lucide-react';
 import { useScrollAnimation } from '../utils/useScrollAnimation';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const Home: React.FC = () => {
   const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLDivElement>();
+  const { theme } = useTheme();
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20" ref={sectionRef}>
@@ -15,14 +17,14 @@ export const Home: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6C63FF] via-[#2EC4B6] to-[#FFD700]">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3b82f6] via-[#2EC4B6] to-[#8b5cf6]">
               Mahaveer K
             </span>
           </h1>
           
           {/* Professional Title */}
           <p 
-            className={`text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 transition-all duration-1000 delay-300 ease-out text-white ${
+            className={`text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 transition-all duration-1000 delay-300 ease-out ${theme === 'light' ? 'text-slate-800' : 'text-white'} ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
@@ -31,12 +33,12 @@ export const Home: React.FC = () => {
 
           {/* Enhanced Professional Description */}
           <p 
-            className={`text-lg md:text-xl mb-8 transition-all duration-1000 delay-500 ease-out text-slate-300 max-w-4xl mx-auto leading-relaxed ${
+            className={`text-lg md:text-xl mb-8 transition-all duration-1000 delay-500 ease-out ${theme === 'light' ? 'text-slate-600' : 'text-slate-300'} max-w-4xl mx-auto leading-relaxed ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
             Passionate about creating innovative mobile applications and web solutions. 
-            Specializing in <span className="text-[#6C63FF] font-semibold">Flutter development</span>, 
+            Specializing in <span className="text-[#3b82f6] font-semibold">Flutter development</span>, 
             <span className="text-[#2EC4B6] font-semibold"> MERN stack</span>, and modern software engineering practices.
           </p>
 
@@ -46,17 +48,17 @@ export const Home: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#6C63FF]/20 to-[#6C63FF]/10 border border-[#6C63FF]/30 rounded-full backdrop-blur-sm">
-              <Smartphone className="w-4 h-4 text-[#6C63FF]" />
-              <span className="text-sm font-medium text-white">Flutter</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#3b82f6]/20 to-[#3b82f6]/10 border border-[#3b82f6]/30 rounded-full backdrop-blur-sm">
+              <Smartphone className="w-4 h-4 text-[#3b82f6]" />
+              <span className={`text-sm font-medium ${theme === 'light' ? 'text-slate-800' : 'text-white'}`}>Flutter</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#2EC4B6]/20 to-[#2EC4B6]/10 border border-[#2EC4B6]/30 rounded-full backdrop-blur-sm">
               <Globe className="w-4 h-4 text-[#2EC4B6]" />
-              <span className="text-sm font-medium text-white">Next.js</span>
+              <span className={`text-sm font-medium ${theme === 'light' ? 'text-slate-800' : 'text-white'}`}>Next.js</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FFD700]/20 to-[#FFD700]/10 border border-[#FFD700]/30 rounded-full backdrop-blur-sm">
-              <Code className="w-4 h-4 text-[#FFD700]" />
-              <span className="text-sm font-medium text-white">JavaScript</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#8b5cf6]/20 to-[#8b5cf6]/10 border border-[#8b5cf6]/30 rounded-full backdrop-blur-sm">
+              <Code className="w-4 h-4 text-[#8b5cf6]" />
+              <span className={`text-sm font-medium ${theme === 'light' ? 'text-slate-800' : 'text-white'}`}>JavaScript</span>
             </div>
           </div>
           
@@ -69,7 +71,7 @@ export const Home: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
               <a 
                 href="#projects" 
-                className="inline-flex items-center gap-3 py-3 px-6 bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] rounded-full font-semibold text-base text-white hover:shadow-lg transition-all duration-300"
+                className="inline-flex items-center gap-3 py-3 px-6 bg-gradient-to-r from-[#3b82f6] to-[#2EC4B6] rounded-full font-semibold text-base text-white hover:shadow-lg transition-all duration-300"
                 aria-label="View my projects"
               >
                 <ExternalLink className="w-5 h-5" />
@@ -80,7 +82,7 @@ export const Home: React.FC = () => {
                 href="https://drive.google.com/file/d/15OKzAONtc8IMWyx0yEz4Tf8a84qYtK3T/view?usp=sharing" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 py-3 px-6 bg-gradient-to-r from-[#FFD700]/90 to-[#F97316]/90 rounded-full font-semibold text-base text-white hover:shadow-lg hover:from-[#FFD700] hover:to-[#F97316] transition-all duration-300"
+                className="inline-flex items-center gap-3 py-3 px-6 bg-gradient-to-r from-[#8b5cf6]/90 to-[#a855f7]/90 rounded-full font-semibold text-base text-white hover:shadow-lg hover:from-[#8b5cf6] hover:to-[#a855f7] transition-all duration-300"
                 aria-label="Download my resume"
               >
                 <FileText className="w-5 h-5" />
@@ -89,7 +91,7 @@ export const Home: React.FC = () => {
               
               <a 
                 href="#contact" 
-                className="inline-flex items-center gap-3 py-3 px-6 border-2 border-[#6C63FF] text-[#6C63FF] rounded-full font-semibold text-base hover:bg-[#6C63FF] hover:text-white transition-all duration-300"
+                className="inline-flex items-center gap-3 py-3 px-6 border-2 border-[#3b82f6] text-[#3b82f6] rounded-full font-semibold text-base hover:bg-[#3b82f6] hover:text-white transition-all duration-300"
                 aria-label="Get in touch"
               >
                 <Mail className="w-5 h-5" />
@@ -108,7 +110,7 @@ export const Home: React.FC = () => {
               href="https://github.com/MAHAVEER-IT" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-4 rounded-full bg-slate-800/30 border border-slate-600/50 hover:bg-[#6C63FF]/20 hover:border-[#6C63FF]/50 transition-all duration-300 text-slate-300 hover:text-white"
+              className={`p-4 rounded-full ${theme === 'light' ? 'bg-slate-200/50 border border-slate-300/50 hover:bg-[#3b82f6]/20 hover:border-[#3b82f6]/50 text-slate-700 hover:text-[#3b82f6]' : 'bg-slate-800/30 border border-slate-600/50 hover:bg-[#6C63FF]/20 hover:border-[#6C63FF]/50 text-slate-300 hover:text-white'} transition-all duration-300`}
               aria-label="GitHub Profile"
             >
               <Github className="w-6 h-6" />
@@ -118,7 +120,7 @@ export const Home: React.FC = () => {
               href="https://www.linkedin.com/in/mahaveer-k" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-4 rounded-full bg-slate-800/30 border border-slate-600/50 hover:bg-[#2EC4B6]/20 hover:border-[#2EC4B6]/50 transition-all duration-300 text-slate-300 hover:text-white"
+              className={`p-4 rounded-full ${theme === 'light' ? 'bg-slate-200/50 border border-slate-300/50 hover:bg-[#2EC4B6]/20 hover:border-[#2EC4B6]/50 text-slate-700 hover:text-[#2EC4B6]' : 'bg-slate-800/30 border border-slate-600/50 hover:bg-[#2EC4B6]/20 hover:border-[#2EC4B6]/50 text-slate-300 hover:text-white'} transition-all duration-300`}
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-6 h-6" />
@@ -126,7 +128,7 @@ export const Home: React.FC = () => {
             
             <a 
               href="mailto:mahaveer.k2023it@sece.ac.in"
-              className="p-4 rounded-full bg-slate-800/30 border border-slate-600/50 hover:bg-[#FFD700]/20 hover:border-[#FFD700]/50 transition-all duration-300 text-slate-300 hover:text-white"
+              className={`p-4 rounded-full ${theme === 'light' ? 'bg-slate-200/50 border border-slate-300/50 hover:bg-[#8b5cf6]/20 hover:border-[#8b5cf6]/50 text-slate-700 hover:text-[#8b5cf6]' : 'bg-slate-800/30 border border-slate-600/50 hover:bg-[#FFD700]/20 hover:border-[#FFD700]/50 text-slate-300 hover:text-white'} transition-all duration-300`}
               aria-label="Email Contact"
             >
               <Mail className="w-6 h-6" />
@@ -141,7 +143,7 @@ export const Home: React.FC = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         aria-label="Scroll to About section"
       >
-        <ArrowDownCircle className="w-10 h-10 text-[#6C63FF] hover:text-[#2EC4B6] transition-colors duration-300 animate-bounce" />
+        <ArrowDownCircle className="w-10 h-10 text-[#3b82f6] hover:text-[#2EC4B6] transition-colors duration-300 animate-bounce" />
       </a>
     </section>
   );
