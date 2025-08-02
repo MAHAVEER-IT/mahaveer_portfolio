@@ -1,9 +1,9 @@
 @keyframes rotate-border-light {
   0% {
-    transform: rotate(0deg);
+    transform: translateZ(0) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: translateZ(0) rotate(360deg);
   }
 }
 
@@ -11,11 +11,8 @@
   0% {
     background-position: 0% 50%;
   }
-  50% {
-    background-position: 100% 50%;
-  }
   100% {
-    background-position: 0% 50%;
+    background-position: 100% 50%;
   }
 }
 
@@ -41,7 +38,11 @@
   border-radius: 16px;
   overflow: hidden;
   z-index: 1;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
 }
 
 .dark .achievement-card {
@@ -50,7 +51,7 @@
 }
 
 .achievement-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) translateZ(0);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   border-color: rgba(255, 215, 0, 0.4);
 }
@@ -81,11 +82,14 @@
     transparent 360deg
   );
   border-radius: 50%;
-  animation: rotate-border-light 4s linear infinite;
+  animation: rotate-border-light 6s linear infinite;
   opacity: 0;
   transition: opacity 0.6s ease;
   z-index: -2;
   pointer-events: none; /* Ensure the pseudo-element doesn't block hover */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .dark .achievement-card::before {
@@ -119,6 +123,8 @@
   border-radius: 14px;
   z-index: -1;
   pointer-events: none; /* Ensure the pseudo-element doesn't block hover */
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .dark .achievement-card::after {
@@ -135,7 +141,11 @@
   border-radius: 16px;
   overflow: hidden;
   z-index: 1;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
 }
 
 .dark .certification-card {
@@ -144,7 +154,7 @@
 }
 
 .certification-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) translateZ(0);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   border-color: rgba(46, 196, 182, 0.4);
 }
@@ -173,10 +183,13 @@
   border-radius: 17px;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: xor;
-  animation: spin 4s linear infinite;
+  animation: spin 6s linear infinite;
   opacity: 0;
   transition: opacity 0.5s ease;
   pointer-events: none; /* Ensure the pseudo-element doesn't block hover */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .dark .certification-card::before {
@@ -196,11 +209,14 @@
   opacity: 1;
 }
 
-/* Enhanced achievement item styles */
+/* Enhanced achievement item styles - simplified for performance */
 .achievement-item {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .achievement-item::after {
@@ -216,19 +232,25 @@
     rgba(255, 255, 255, 0.1),
     transparent
   );
-  transition: 0.5s;
+  transition: transform 0.5s ease;
   z-index: -1;
+  transform: translateZ(0);
+  will-change: transform;
+  pointer-events: none;
 }
 
 .achievement-item:hover::after {
-  left: 100%;
+  transform: translateX(200%) translateZ(0);
 }
 
-/* Enhanced certification item styles */
+/* Enhanced certification item styles - simplified for performance */
 .certification-item {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .certification-item::after {
@@ -244,18 +266,24 @@
     rgba(255, 255, 255, 0.1),
     transparent
   );
-  transition: 0.5s;
+  transition: transform 0.5s ease;
   z-index: -1;
+  transform: translateZ(0);
+  will-change: transform;
+  pointer-events: none;
 }
 
 .certification-item:hover::after {
-  left: 100%;
+  transform: translateX(200%) translateZ(0);
 }
 
-/* Icon container with pulsing effect */
+/* Icon container with pulsing effect - simplified for performance */
 .icon-container {
   position: relative;
   overflow: hidden;
+  transform: translateZ(0);
+  will-change: opacity;
+  backface-visibility: hidden;
 }
 
 .icon-container::before {
@@ -265,6 +293,7 @@
   background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .icon-container:hover::before {
