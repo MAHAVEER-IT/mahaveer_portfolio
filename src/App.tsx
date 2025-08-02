@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Home } from './components/Home';
 import { Navbar } from './components/Navbar';
 import { About } from './components/About';
@@ -12,30 +12,10 @@ import { TopologyBackground } from './components/TopologyBackground';
 import { ProjectDetail } from './components/ProjectDetail';
 import { CursorStarsCanvas } from './components/CursorStarsCanvas';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { usePerformanceOptimizations } from './utils/performanceOptimizations';
 import './App.css';
-import './Styles/PerformanceStyles.css';
-import './Styles/BackgroundOptimization.css';
-import './Styles/ScrollPerformance.css';
 
 function App() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  
-  // Apply performance optimizations
-  usePerformanceOptimizations();
-  
-  // Mark the app as loaded once initial render is complete
-  useEffect(() => {
-    // Use requestAnimationFrame to defer this after browser paint
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        setIsLoaded(true);
-        // Add loaded class to body for CSS optimizations
-        document.body.classList.add('app-loaded');
-      }, 100);
-    });
-  }, []);
 
   const handleProjectSelect = (project: any) => {
     setSelectedProject(project);
@@ -48,7 +28,7 @@ function App() {
   return (
     <ThemeProvider>
       {/* Cursor Stars Effect - active on all pages */}
-      {isLoaded && <CursorStarsCanvas />}
+      <CursorStarsCanvas />
       
       {selectedProject ? (
         // Show ONLY the project details page
@@ -58,7 +38,7 @@ function App() {
         />
       ) : (
         // Show the main portfolio
-        <div className={`relative overflow-hidden ${isLoaded ? 'app-loaded' : 'app-loading'}`}>
+        <div className="relative overflow-hidden">
           <TopologyBackground />
           <Navbar />
           <main className="relative z-10">
