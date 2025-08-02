@@ -28,7 +28,7 @@ export const Home: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            Flutter & Full Stack Developer
+            Full Stack Developer
           </p>
 
           {/* Enhanced Professional Description */}
@@ -38,9 +38,9 @@ export const Home: React.FC = () => {
             }`}
           >
           
-            Passionate about creating stunning
-            <span className="text-[#2EC4B6] font-semibold">web applications</span> and 
-            <span className="text-[#2EC4B6] font-semibold">cross-platform mobile</span> solutions. Specializing in modern software engineering practices.
+            Passionate about creating stunning 
+            <span className="text-[#2EC4B6] font-semibold px-0.5">web applications</span> and 
+            <span className="text-[#2EC4B6] font-semibold px-0.5">cross-platform mobile</span> solutions. Specializing in modern software engineering practices.
           </p>
 
           {/* Quick Skills Showcase */}
