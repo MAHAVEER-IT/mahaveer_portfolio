@@ -34,12 +34,6 @@ export const About: React.FC = () => {
     }
   ];
 
-  const personalInfo = [
-    { icon: Phone, label: 'Phone', value: '+91 6374827794', href: 'tel:+916374827794' },
-    { icon: Mail, label: 'Email', value: 'mahaveer.k2023it@sece.ac.in', href: 'mailto:mahaveer.k2023it@sece.ac.in' },
-    { icon: MapPin, label: 'Location', value: 'Tamil Nadu, India', href: null },
-  ];
-
   return (
     <section 
       id="about" 
@@ -151,45 +145,26 @@ export const About: React.FC = () => {
               
               <div className="space-y-6 mb-8">
                 <p className={`text-lg leading-relaxed ${theme === 'light' ? 'text-slate-700' : 'text-slate-300'}`}>
-                  I'm a <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>B.Tech Information Technology</strong> student passionate about creating impactful digital solutions. I'm actively building my expertise in <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>full-stack web development</strong>, working with technologies like <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>React and Next.js</strong> for client-side development, and <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Node.js with Express</strong> for server-side logic. I use <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>MongoDB and Firebase</strong> as cloud database solutions, and my frontend foundation includes HTML5, CSS3, and JavaScript, enabling me to create responsive, user-friendly interfaces.
+                  I'm a <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>B.Tech Information Technology</strong> student with a passion for developing impactful digital solutions. My technical expertise includes:
                 </p>
+                
+                <div className="pl-4 border-l-2 border-opacity-30 border-blue-500 dark:border-[#6C63FF]">
+                  <p className={`text-lg leading-relaxed ${theme === 'light' ? 'text-slate-700' : 'text-slate-300'}`}>
+                    <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Web Development:</strong> Proficient in building full-stack applications using <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>React</strong> and <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Next.js</strong> on the frontend, with <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Node.js/Express</strong> for backend development.
+                  </p>
+                  
+                  <p className={`text-lg leading-relaxed ${theme === 'light' ? 'text-slate-700' : 'text-slate-300'}`}>
+                    <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Database Solutions:</strong> Experience with <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>MongoDB</strong> and <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Firebase</strong> for cloud-based data management.
+                  </p>
+                  
+                  <p className={`text-lg leading-relaxed ${theme === 'light' ? 'text-slate-700' : 'text-slate-300'}`}>
+                    <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Mobile Development:</strong> Strong foundation in <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Flutter</strong> for creating cross-platform, user-centered mobile applications.
+                  </p>
+                </div>
+                
                 <p className={`text-lg leading-relaxed ${theme === 'light' ? 'text-slate-700' : 'text-slate-300'}`}>
-                  I have hands-on experience integrating APIs, managing both client-side and server-side functionalities, and delivering clean, maintainable code across dynamic web applications.
+                  My hands-on experience includes API integration, responsive UI design, and delivering clean, maintainable code across various web and mobile projects. I focus on creating intuitive user experiences while ensuring solid technical implementation.
                 </p>
-                <p className={`text-lg leading-relaxed ${theme === 'light' ? 'text-slate-700' : 'text-slate-300'}`}>
-                  Alongside my web development journey, I have a strong foundation in <strong className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Flutter</strong>, where I enjoy designing and building intuitive, cross-platform mobile applications focused on real-world usability and seamless user experience.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                {personalInfo.map((info, index) => (
-                  <div key={index} className="flex items-center group">
-                    <div className={`p-2 rounded-lg ${
-                      theme === 'light' 
-                        ? 'bg-[#3b82f6]/20 border border-[#3b82f6]/30 group-hover:bg-[#3b82f6]/30' 
-                        : 'bg-[#6C63FF]/20 border border-[#6C63FF]/30 group-hover:bg-[#6C63FF]/30'
-                    } transition-all duration-300 mr-4`}>
-                      <info.icon className={`w-5 h-5 ${theme === 'light' ? 'text-[#3b82f6]' : 'text-[#6C63FF]'}`} />
-                    </div>
-                    <div className="overflow-hidden">
-                      <p className={`text-sm ${theme === 'light' ? 'text-slate-500' : 'text-slate-400'} mb-1`}>{info.label}</p>
-                      {info.href ? (
-                        <a 
-                          href={info.href}
-                          className={`${
-                            theme === 'light' 
-                              ? 'text-slate-800 hover:text-[#3b82f6]' 
-                              : 'text-white hover:text-[#6C63FF]'
-                          } transition-colors duration-300 font-medium text-sm sm:text-base break-all`}
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <span className={`${theme === 'light' ? 'text-slate-800' : 'text-white'} font-medium`}>{info.value}</span>
-                      )}
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
