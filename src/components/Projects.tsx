@@ -145,7 +145,7 @@ The vaccination alert system uses a smart scheduling algorithm that considers fa
 Additional features include weather forecasting integration, crop planning tools based on soil conditions and climate data, and a community forum where farmers can share experiences and learn from each other.`,
       liveLink: 'https://www.canva.com/design/DAGrAd4CWMI/JwQ19kPFiNsjxFi0YFJ9_A/watch?utm_content=DAGrAd4CWMI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h0409f5f144',
       codeLink: 'https://github.com/MAHAVEER-IT/Sow-Grow.git',
-      image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1751315583/mhef6jixumwfyltnjukn.png',
+      image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1754154244/mhef6jixumwfyltnjukn.png',
       technologies: ['Flutter', 'Dart', 'Node.js', 'MongoDB', 'Open Street Map', 'Gemini AI'],
       features: [
         'AI-powered disease detection for crops and livestock with Gemini-AI(API)',
