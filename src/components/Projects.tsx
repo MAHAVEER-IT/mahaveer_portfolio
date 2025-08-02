@@ -72,7 +72,7 @@ Admin Capabilities:
 The application architecture leverages Next.js App Router for efficient routing, server components for improved performance, and MongoDB for flexible data storage. The responsive design ensures optimal viewing across all device sizes, while the TailwindCSS implementation provides a modern and consistent UI.`,
       liveLink: 'https://my-travel-log-sooty.vercel.app/',
       codeLink: 'https://github.com/MAHAVEER-IT/MyTravelLog.git',
-      image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1753595766/wqpj5fehcsyvymrl74ou.png',
+      image: 'https://res.cloudinary.com/dkn3it92b/image/upload/v1754153224/wqpj5fehcsyvymrl74ou.png',
       technologies: ['Next.js', 'React', 'MongoDB', 'Mongoose', 'TailwindCSS', 'NextAuth.js', 'Cloudinary'],
       features: [
         'Server-side rendering with Next.js App Router',
