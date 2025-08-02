@@ -42,6 +42,7 @@
   overflow: hidden;
   z-index: 1;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, opacity;
 }
 
 .dark .achievement-card {
@@ -136,6 +137,7 @@
   overflow: hidden;
   z-index: 1;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, opacity;
 }
 
 .dark .certification-card {
@@ -201,6 +203,7 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
+  will-change: transform, opacity;
 }
 
 .achievement-item::after {
@@ -229,6 +232,7 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
+  will-change: transform, opacity;
 }
 
 .certification-item::after {
@@ -256,6 +260,7 @@
 .icon-container {
   position: relative;
   overflow: hidden;
+  will-change: transform, opacity;
 }
 
 .icon-container::before {

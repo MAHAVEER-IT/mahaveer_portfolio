@@ -53,6 +53,7 @@
   opacity: 0;
   transition: opacity 0.6s ease;
   z-index: -2;
+  will-change: transform, opacity;
 }
 
 .dark .project-card-animated::before {
@@ -118,6 +119,7 @@
   );
   transform: skewX(-25deg);
   transition: all 0.75s ease;
+  will-change: transform, opacity;
 }
 
 .project-card-animated:hover .project-image-container::after {
