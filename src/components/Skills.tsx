@@ -22,7 +22,7 @@ export const Skills: React.FC = () => {
     {
       title: 'Framework/Library',
       icon: <Globe className="w-6 h-6 text-[#2EC4B6]" />,
-      skills: ['Flutter', 'React', 'NodeJS']
+      skills: ['Flutter', 'React', 'Node.js','Next.js']
     },
     {
       title: 'Database',
